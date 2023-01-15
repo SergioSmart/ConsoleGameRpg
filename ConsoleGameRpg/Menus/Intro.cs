@@ -12,8 +12,13 @@ namespace ConsoleGameRpg.Menus
         
         public void Print()
         {
-            string file = File.ReadAllText("intro.txt");
-            Console.WriteLine(file);
+            string[] file = File.ReadAllLines("intro.txt");
+
+
+            for (int i = 0; i < file.Length; i++)
+            {
+                Console.WriteLine(file[i]);
+            }
         }
 
     }
