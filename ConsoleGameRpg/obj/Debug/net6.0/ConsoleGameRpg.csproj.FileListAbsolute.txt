@@ -1,0 +1,15 @@
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\bin\Debug\net6.0\ConsoleGameRpg.exe
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\bin\Debug\net6.0\ConsoleGameRpg.deps.json
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\bin\Debug\net6.0\ConsoleGameRpg.runtimeconfig.json
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\bin\Debug\net6.0\ConsoleGameRpg.dll
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\bin\Debug\net6.0\ConsoleGameRpg.pdb
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.csproj.AssemblyReference.cache
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.AssemblyInfoInputs.cache
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.AssemblyInfo.cs
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.csproj.CoreCompileInputs.cache
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.dll
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\refint\ConsoleGameRpg.dll
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.pdb
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.genruntimeconfig.cache
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ref\ConsoleGameRpg.dll
