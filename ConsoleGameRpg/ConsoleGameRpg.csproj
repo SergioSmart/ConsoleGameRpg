@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Engine\Graphic\Menus\" />
     <Folder Include="Engine\Graphic\Levels\" />
   </ItemGroup>
 
