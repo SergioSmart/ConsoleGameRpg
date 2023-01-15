@@ -1,4 +1,4 @@
-﻿using ConsoleGameRpg.TempXXX;
+﻿using ConsoleGameRpg.Engine;
 
 namespace ConsoleGameRpg
 {
@@ -6,12 +6,9 @@ namespace ConsoleGameRpg
     {
         //DEVELOP BRANCH
 
-        static void Main(string[] args)
+        public static void Main()
         {
-            Intro intro = new Intro();
-            intro.Print();
-
-            Console.ReadKey();
+            GUI gUI = null
         }
     }
 }
