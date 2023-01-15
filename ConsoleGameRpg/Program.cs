@@ -8,7 +8,19 @@ namespace ConsoleGameRpg
 
         public static void Main()
         {
-            
+
+            while (true)
+            {
+                MusicBeep.PlayTrack1();
+
+            }
+
+            //string path = "intro.txt";
+            //var gui = new GUI();
+
+            //gui.PrintMap(path);
+
+            //Console.ReadKey();
         }
     }
 }
