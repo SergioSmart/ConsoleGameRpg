@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleGameRpg.Engine
+namespace ConsoleGameRpg.Engine.Music
 {
-    internal class MusicBeep
+    public class MusicBeep
     {
         private static int _frequency = 100;
         private static int _duration = 300;
@@ -16,7 +16,7 @@ namespace ConsoleGameRpg.Engine
 
         public static void PlayTrack1(bool isActive)
         {
-            while(isActive)
+            while (isActive)
             {
                 if (_cycle >= 0 && _cycle < 4)
                 {

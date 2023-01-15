@@ -1,9 +1,9 @@
-﻿using ConsoleGameRpg.Engine;
+﻿using ConsoleGameRpg.Engine.Graphic;
 using System.Text;
 
 namespace ConsoleGameRpg
 {
-    internal class Program
+    public class Program
     {
         //DEVELOP BRANCH
 
@@ -17,7 +17,7 @@ namespace ConsoleGameRpg
             
 
             map = gui.ReadMap("resources/menus/intro.txt");
-            gui.WriteIntro(map);
+            gui.WriteMap(map);
 
             
 
