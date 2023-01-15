@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleGameRpg.Menus
+namespace ConsoleGameRpg.TempXXX
 {
     internal class Intro
     {
@@ -13,14 +13,14 @@ namespace ConsoleGameRpg.Menus
         public void Print()
         {
             string[] file = File.ReadAllLines("intro.txt");
-            Console.Beep();
-            Thread.Sleep(1000);
-            Console.Beep(38, 3);
+
 
             for (int i = 0; i < file.Length; i++)
             {
                 Console.WriteLine(file[i]);
             }
+
+
         }
 
     }

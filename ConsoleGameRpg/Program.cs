@@ -1,4 +1,4 @@
-﻿using ConsoleGameRpg.Menus;
+﻿using ConsoleGameRpg.TempXXX;
 
 namespace ConsoleGameRpg
 {
@@ -10,6 +10,8 @@ namespace ConsoleGameRpg
         {
             Intro intro = new Intro();
             intro.Print();
+
+            Console.ReadKey();
         }
     }
 }
