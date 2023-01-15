@@ -8,7 +8,7 @@ namespace ConsoleGameRpg
 
         public static void Main()
         {
-            GUI gUI = null
+            
         }
     }
 }
