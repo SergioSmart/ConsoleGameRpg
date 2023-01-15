@@ -1,4 +1,6 @@
-﻿namespace ConsoleGameRpg
+﻿using ConsoleGameRpg.Menus;
+
+namespace ConsoleGameRpg
 {
     internal class Program
     {
@@ -6,7 +8,8 @@
 
         static void Main(string[] args)
         {
-            Console.WriteLine();
+            Intro intro = new Intro();
+            intro.Print();
         }
     }
 }
