@@ -1,5 +1,6 @@
 ﻿using ConsoleGameRpg.Engine.Graphic;
 using ConsoleGameRpg.Engine.Graphic.Menus;
+using ConsoleGameRpg.Engine.Music;
 using System.Text;
 
 namespace ConsoleGameRpg
@@ -10,9 +11,7 @@ namespace ConsoleGameRpg
 
         public static void Main()
         {
-            Intro intro = new Intro();
-
-            intro.WriteMap();
+            MusicBeep.PlayHeartTaken();
         }
     }
 }

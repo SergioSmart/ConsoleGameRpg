@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleGameRpg.Engine.Music
+﻿namespace ConsoleGameRpg.Engine.Music
 {
     public class MusicBeep
     {
@@ -56,6 +50,14 @@ namespace ConsoleGameRpg.Engine.Music
                 {
                     _cycle = 0;
                 }
+            }
+        }
+
+        public static void PlayHeartTaken()
+        {
+            for (int i = 0; i < 12; i++)
+            {
+                Console.Beep(300 + i * 900, 40);
             }
         }
     }
