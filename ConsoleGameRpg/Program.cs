@@ -1,6 +1,7 @@
 ﻿using ConsoleGameRpg.Engine.Graphic;
 using ConsoleGameRpg.Engine.Graphic.Menus;
 using ConsoleGameRpg.Engine.Music;
+using System.IO;
 using System.Text;
 
 namespace ConsoleGameRpg
@@ -14,19 +15,19 @@ namespace ConsoleGameRpg
             char[,] map = ReadMap("level1.txt");
             ConsoleKeyInfo pressedKey = new ConsoleKeyInfo('D', ConsoleKey.D, false, false, false);
 
-            int mainHeroX = 2;
-            int mainHeroY = 2;
+            int playerPositionX = 2;
+            int playerPositionY = 2;
 
             while (true)
             {
 
                 Console.BackgroundColor = ConsoleColor.DarkGreen;
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Clear();                
-                
+                Console.Clear();
+
                 DrawMap(map);
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.SetCursorPosition(mainHeroX, mainHeroY);
+                Console.SetCursorPosition(playerPositionX, playerPositionY);
                 Console.Write("☻");
 
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -35,13 +36,55 @@ namespace ConsoleGameRpg
 
                 pressedKey = Console.ReadKey();
 
-                HandleInput(pressedKey, ref mainHeroX, ref mainHeroY);
+                HandleInput(pressedKey, ref playerPositionX, ref playerPositionY, map);
             }
         }
 
-        private static void HandleInput(ConsoleKeyInfo pressedKey, ref int mainHeroX, ref int mainHeroY)
+        private static void HandleInput(ConsoleKeyInfo pressedKey, ref int playerPositionX, ref int playerPositionY, char[,] map) 
         {
+            int[] direction = GetDirection(pressedKey);
 
+            int nextPlayerPositionX = playerPositionX + direction[0];
+            int nextPlayerPositionY = playerPositionY + direction[1];
+
+            switch (pressedKey.Key)
+            {
+                case ConsoleKey.UpArrow:
+                    playerPositionY -= 1;
+                    break;
+                case ConsoleKey.DownArrow:
+                    playerPositionY += 1;
+                    break;
+                case ConsoleKey.LeftArrow:
+                    playerPositionX -= 1;
+                    break;
+                case ConsoleKey.RightArrow:
+                    playerPositionX += 1;
+                    break;
+            }
+        }
+
+        private static int[] GetDirection(ConsoleKeyInfo pressedKey)
+        {
+            int[] direction = { 0, 0 };
+
+            switch (pressedKey.Key)
+            {
+                case ConsoleKey.UpArrow:
+                    direction[1] = -1;
+                    break;
+                case ConsoleKey.DownArrow:
+                    direction[1] = 1;
+                    break;
+                case ConsoleKey.LeftArrow:
+                    direction[0] = -1;
+                    break;
+                case ConsoleKey.RightArrow:
+                    direction[0] = 1;
+                    break;
+            }
+
+            return direction;
         }
 
         private static char[,] ReadMap(string path)
@@ -52,7 +95,7 @@ namespace ConsoleGameRpg
 
             for (int x = 0; x < map.GetLength(0); x++)
                 for (int y = 0; y < map.GetLength(1); y++)
-                    map[x,y] = file[y][x];
+                    map[x, y] = file[y][x];
 
             return map;
         }
@@ -63,7 +106,7 @@ namespace ConsoleGameRpg
             {
                 for (int x = 0; x < map.GetLength(0); x++)
                 {
-                    Console.Write(map[x,y]);
+                    Console.Write(map[x, y]);
                 }
                 Console.Write("\n");
             }
@@ -75,8 +118,8 @@ namespace ConsoleGameRpg
 
             foreach (var line in lines)
             {
-                if(line.Length > maxLength)
-                    maxLength= line.Length;
+                if (line.Length > maxLength)
+                    maxLength = line.Length;
             }
 
             return maxLength;
