@@ -3,6 +3,7 @@ using ConsoleGameRpg.Engine.Graphic.Menus;
 using ConsoleGameRpg.Engine.Music;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace ConsoleGameRpg
 {
@@ -14,29 +15,36 @@ namespace ConsoleGameRpg
         {
             char[,] map = ReadMap("level1.txt");
             ConsoleKeyInfo pressedKey = new ConsoleKeyInfo('D', ConsoleKey.D, false, false, false);
+            Console.CursorVisible = false;
 
+            Task.Run(() =>
+            {
+                while (true) 
+                {
+                    MusicBeep.PlayTrack1(true);
+                }
+            });
+
+            
             int playerPositionX = 2;
             int playerPositionY = 2;
 
             while (true)
             {
-
                 Console.BackgroundColor = ConsoleColor.DarkGreen;
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Clear();
+
+                
 
                 DrawMap(map);
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.SetCursorPosition(playerPositionX, playerPositionY);
                 Console.Write("☻");
-
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.SetCursorPosition(55, 0);
-                Console.Write(pressedKey.KeyChar);
-
+                
                 pressedKey = Console.ReadKey();
-
                 HandleInput(pressedKey, ref playerPositionX, ref playerPositionY, map);
+                //Thread.Sleep(54);
             }
         }
 
@@ -47,21 +55,27 @@ namespace ConsoleGameRpg
             int nextPlayerPositionX = playerPositionX + direction[0];
             int nextPlayerPositionY = playerPositionY + direction[1];
 
-            switch (pressedKey.Key)
+            if (map[nextPlayerPositionX, nextPlayerPositionY] != '█') 
             {
-                case ConsoleKey.UpArrow:
-                    playerPositionY -= 1;
-                    break;
-                case ConsoleKey.DownArrow:
-                    playerPositionY += 1;
-                    break;
-                case ConsoleKey.LeftArrow:
-                    playerPositionX -= 1;
-                    break;
-                case ConsoleKey.RightArrow:
-                    playerPositionX += 1;
-                    break;
+                playerPositionX = nextPlayerPositionX;
+                playerPositionY = nextPlayerPositionY;
             }
+
+            //switch (pressedKey.Key)
+            //{
+            //    case ConsoleKey.UpArrow:
+            //        playerPositionY -= 1;
+            //        break;
+            //    case ConsoleKey.DownArrow:
+            //        playerPositionY += 1;
+            //        break;
+            //    case ConsoleKey.LeftArrow:
+            //        playerPositionX -= 1;
+            //        break;
+            //    case ConsoleKey.RightArrow:
+            //        playerPositionX += 1;
+            //        break;
+            //}
         }
 
         private static int[] GetDirection(ConsoleKeyInfo pressedKey)
