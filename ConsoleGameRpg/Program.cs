@@ -10,8 +10,8 @@ namespace ConsoleGameRpg
     public class Program
     {
         //DEVELOP BRANCH
-        private const int ScreenWidth = 49; //170
-        private const int ScreenHeight = 20; //45
+        private const int ScreenWidth = 170; //170
+        private const int ScreenHeight = 46; //46
 
         public static void Main()
         {
@@ -19,15 +19,19 @@ namespace ConsoleGameRpg
             Console.SetBufferSize(ScreenWidth, ScreenHeight);
             Console.CursorVisible = false;
 
-            var screen = new char[ScreenWidth * ScreenHeight];
-            string strScreen = File.ReadAllText("level1.txt");
 
-            screen = strScreen.ToCharArray();
+
+
+            char[] charScreen = new char[ScreenWidth * ScreenHeight];
+            
+            string strScreen = File.ReadAllText("level1-2d.txt");
+          
+            charScreen = strScreen.ToCharArray();
 
             while (true)
             {
-                Console.SetCursorPosition(0, 0);
-                Console.Write(screen, 0, ScreenWidth * ScreenHeight);
+                Console.SetCursorPosition(0, 4);
+                Console.Write(charScreen, 0, charScreen.Length);
             }
 
 
