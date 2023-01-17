@@ -1,6 +1,6 @@
 ﻿namespace ConsoleGameRpg.Engine.Music
 {
-    public class MusicBeep
+    public class GameMusic
     {
         private static int _frequency = 100;
         private static int _duration = 300;

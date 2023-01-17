@@ -1,6 +1,7 @@
 ﻿using ConsoleGameRpg.Engine.Graphic;
 using ConsoleGameRpg.Engine.Graphic.Menus;
 using ConsoleGameRpg.Engine.Music;
+using System.Data;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -11,7 +12,15 @@ namespace ConsoleGameRpg
     {
         //DEVELOP BRANCH
         private const int ScreenWidth = 170; //170
-        private const int ScreenHeight = 46; //46
+        private const int ScreenHeight = 47;  //47
+
+        private const int _mapWidth = 170;
+        private const int _mapHeight = 30;
+
+        public static int playerX = 1;
+        public static int playerY = 1;
+
+        private static string _map = "";
 
         public static void Main()
         {
@@ -19,23 +28,68 @@ namespace ConsoleGameRpg
             Console.SetBufferSize(ScreenWidth, ScreenHeight);
             Console.CursorVisible = false;
 
-
-
-
-            char[] charScreen = new char[ScreenWidth * ScreenHeight];
-            
-            string strScreen = File.ReadAllText("level1-2d.txt");
-          
-            charScreen = strScreen.ToCharArray();
+            string _map = InitMap();
+            var screen = new char[ScreenWidth * ScreenHeight];
 
             while (true)
             {
-                Console.SetCursorPosition(0, 4);
-                Console.Write(charScreen, 0, charScreen.Length);
+                //Map drawing
+                for (int x = 0; x < _mapWidth; x++)
+                {
+                    for (int y = 0; y < _mapHeight; y++)
+                    {
+                        screen[y * ScreenWidth + x] = _map[y * _mapWidth + x];
+                    }
+                }
+
+               // screen[(playerY + 1) * ScreenWidth + playerX] = '☻';
+                
+                
+                Console.SetCursorPosition(0, 0);
+                Console.Write(screen, 0, ScreenWidth * ScreenHeight);
             }
 
+            /*
+              //Map
+                for (int x = 0; x < _mapWidth; x++)
+                {
+                    for (int y = 0; y < _mapHeight; y++)
+                    {
+                        screen[(y + 1) * ScreenWidth + x] = _map[y * _mapWidth + x];
+                    }
+                }
 
-            Console.ReadKey();
+                screen[(int)(_playerY + 1) * ScreenWidth + (int)_playerX] = 'J';
+
+                Console.SetCursorPosition(0, 0);
+                Console.Write(screen, 0, ScreenWidth * ScreenHeight);
+             */
+
+
+            //char[] charScreen = new char[ScreenWidth * ScreenHeight];            
+            //string strScreen = File.ReadAllText("test2d.txt");
+
+            //char[] playerArray = { '☻' };
+            //char player = '☻';
+
+            //char[] charInterface = new char[ScreenWidth * InterfaceHeight];
+            //string strInterface = File.ReadAllText("testGUI.txt");
+
+            //charScreen = strScreen.ToCharArray();
+            //charInterface = strInterface.ToCharArray();
+            //int count = 0;
+            //while (true)
+            //{                
+            //    //player.CopyTo(charScreen, count);
+            //    Console.SetCursorPosition(0, 0);
+            //    charScreen.SetValue(player, count);
+
+            //    Console.Write(charScreen);
+
+            //    Console.SetCursorPosition(4, 33);
+            //    Console.Write(count);
+            //}         
+
             //Console.SetWindowSize(1, 1);
             //Console.SetBufferSize(80, 80);
             //Console.SetWindowSize(40, 20);
@@ -80,7 +134,28 @@ namespace ConsoleGameRpg
             //    //HandleInput(pressedKey, ref playerPositionX, ref playerPositionY, map);
             //    //Thread.Sleep(54);
             //}
+            Console.ReadKey();
         }
+
+        private static string InitMap()
+        {
+            var stringBuilder = new StringBuilder();
+
+            string file = File.ReadAllText("test2d.txt");
+            //char[,] map = new char[ScreenWidth, ScreenHeight];
+
+            //for (int y = 0; y < map.GetLength(1); y++)
+            //{
+            //    for (int x = 0; x < map.GetLength(0); x++)
+            //    {
+            //        stringBuilder.Append(map[x, y]);
+            //    }
+            //}
+            //_map = stringBuilder.ToString();
+
+            return file;
+        }
+
 
         private static void HandleInput(ConsoleKeyInfo pressedKey, ref int playerPositionX, ref int playerPositionY, char[,] map) 
         {
