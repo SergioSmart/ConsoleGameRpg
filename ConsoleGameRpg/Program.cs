@@ -10,42 +10,58 @@ namespace ConsoleGameRpg
     public class Program
     {
         //DEVELOP BRANCH
+        private const int ScreenWidth = 50;
+        private const int ScreenHeight = 50;
 
         public static void Main()
         {
-            char[,] map = ReadMap("level1.txt");
-            ConsoleKeyInfo pressedKey;
-            Console.CursorVisible = false;
+            Console.SetWindowSize(ScreenWidth, ScreenHeight);
+            Console.SetBufferSize(ScreenWidth, ScreenHeight);
+            //Console.SetWindowSize(1, 1);
+            //Console.SetBufferSize(80, 80);
+            //Console.SetWindowSize(40, 20);
+            //int bufferWidth = Console.BufferWidth;
+            //int bufferHeight = Console.BufferHeight;
+            //int windowWidth = Console.WindowWidth;
+            //int windowHeight = Console.WindowHeight;
+            //Console.WriteLine(new string('1', 111));
+            //Console.WriteLine($"BW = {bufferWidth}\tBH = {bufferHeight}\tWW = {windowWidth}\tWH = {windowHeight}");
 
-            Task.Run(() =>
-            {
-                while (true)
-                {
-                    MusicBeep.PlayTrack1(true);
-                }
-            });
+            //char[,] map = ReadMap("level1.txt");
+            //ConsoleKeyInfo pressedKey;
+            //Console.CursorVisible = false;
 
-            
-            int playerPositionX = 2;
-            int playerPositionY = 2;
+            //Task.Run(() =>
+            //{
+            //    while (true)
+            //    {
+            //        MusicBeep.PlayTrack1(true);
+            //    }
+            //});
 
-            while (true)
-            {
-                Console.BackgroundColor = ConsoleColor.DarkGreen;
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Clear();
 
-                
+            //int playerPositionX = 2;
+            //int playerPositionY = 2;
 
-                DrawMap(map);
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.SetCursorPosition(playerPositionX, playerPositionY);
-                Console.Write("☻");
-                
-                pressedKey = Console.ReadKey();
-                HandleInput(pressedKey, ref playerPositionX, ref playerPositionY, map);
-                //Thread.Sleep(54);
-            }
+            //while (true)
+            //{
+
+
+            //    //Console.BackgroundColor = ConsoleColor.DarkGreen;
+            //    //Console.ForegroundColor = ConsoleColor.Yellow;
+            //    //Console.Clear();
+
+
+
+            //    //DrawMap(map);
+            //    //Console.ForegroundColor = ConsoleColor.Magenta;
+            //    //Console.SetCursorPosition(playerPositionX, playerPositionY);
+            //    //Console.Write("☻");
+
+            //    //pressedKey = Console.ReadKey();
+            //    //HandleInput(pressedKey, ref playerPositionX, ref playerPositionY, map);
+            //    //Thread.Sleep(54);
+            //}
         }
 
         private static void HandleInput(ConsoleKeyInfo pressedKey, ref int playerPositionX, ref int playerPositionY, char[,] map) 
