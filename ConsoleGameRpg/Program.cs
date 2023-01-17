@@ -10,20 +10,34 @@ namespace ConsoleGameRpg
     public class Program
     {
         //DEVELOP BRANCH
-        private const int ScreenWidth = 50;
-        private const int ScreenHeight = 50;
+        private const int ScreenWidth = 49; //170
+        private const int ScreenHeight = 20; //45
 
         public static void Main()
         {
             Console.SetWindowSize(ScreenWidth, ScreenHeight);
             Console.SetBufferSize(ScreenWidth, ScreenHeight);
+            Console.CursorVisible = false;
+
+            var screen = new char[ScreenWidth * ScreenHeight];
+            string strScreen = File.ReadAllText("level1.txt");
+
+            screen = strScreen.ToCharArray();
+
+            while (true)
+            {
+                Console.SetCursorPosition(0, 0);
+                Console.Write(screen, 0, ScreenWidth * ScreenHeight);
+            }
+
+
+            Console.ReadKey();
             //Console.SetWindowSize(1, 1);
             //Console.SetBufferSize(80, 80);
             //Console.SetWindowSize(40, 20);
             //int bufferWidth = Console.BufferWidth;
             //int bufferHeight = Console.BufferHeight;
-            //int windowWidth = Console.WindowWidth;
-            //int windowHeight = Console.WindowHeight;
+            //Console.WriteLine("WindowLeft: " + windowLeft + "   WindowTop: " + windowTop);
             //Console.WriteLine(new string('1', 111));
             //Console.WriteLine($"BW = {bufferWidth}\tBH = {bufferHeight}\tWW = {windowWidth}\tWH = {windowHeight}");
 
@@ -94,21 +108,22 @@ namespace ConsoleGameRpg
             //}
         }
 
-        private static char[] MakeOneDimension(char[,] map)
-        {
-            char[] oneDMap = new char[map.GetLength(0)];
-            int count = 0;
-            for (int x = 0; x < map.GetLength(1); x++)
-            {
-                for (int y = 0; y < map.GetLength(0); y++)
-                {
-                    oneDMap[count] = map[x, y];
-                    count++;
-                }
-            }
+        // a piece of shit
+        //private static char[] MakeOneDimension(char[,] map)
+        //{
+        //    char[] oneDMap = new char[map.GetLength(0)];
+        //    int count = 0;
+        //    for (int x = 0; x < map.GetLength(1); x++)
+        //    {
+        //        for (int y = 0; y < map.GetLength(0); y++)
+        //        {
+        //            oneDMap[count] = map[x, y];
+        //            count++;
+        //        }
+        //    }
 
-            return oneDMap;
-        }
+        //    return oneDMap;
+        //}
 
         private static int[] GetDirection(ConsoleKeyInfo pressedKey)
         {
