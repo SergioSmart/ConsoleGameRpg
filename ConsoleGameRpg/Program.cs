@@ -14,12 +14,12 @@ namespace ConsoleGameRpg
         public static void Main()
         {
             char[,] map = ReadMap("level1.txt");
-            ConsoleKeyInfo pressedKey = new ConsoleKeyInfo('D', ConsoleKey.D, false, false, false);
+            ConsoleKeyInfo pressedKey;
             Console.CursorVisible = false;
 
             Task.Run(() =>
             {
-                while (true) 
+                while (true)
                 {
                     MusicBeep.PlayTrack1(true);
                 }
@@ -78,6 +78,22 @@ namespace ConsoleGameRpg
             //}
         }
 
+        private static char[] MakeOneDimension(char[,] map)
+        {
+            char[] oneDMap = new char[map.GetLength(0)];
+            int count = 0;
+            for (int x = 0; x < map.GetLength(1); x++)
+            {
+                for (int y = 0; y < map.GetLength(0); y++)
+                {
+                    oneDMap[count] = map[x, y];
+                    count++;
+                }
+            }
+
+            return oneDMap;
+        }
+
         private static int[] GetDirection(ConsoleKeyInfo pressedKey)
         {
             int[] direction = { 0, 0 };
@@ -116,6 +132,13 @@ namespace ConsoleGameRpg
 
         private static void DrawMap(char[,] map)
         {
+            //char[] mapToDraw = MakeOneDimension(map);
+            //for (int i = 0; i < mapToDraw.Length; i++)
+            //{
+            //    Console.Write(mapToDraw[i]);
+            //}
+
+
             for (int y = 0; y < map.GetLength(1); y++)
             {
                 for (int x = 0; x < map.GetLength(0); x++)
