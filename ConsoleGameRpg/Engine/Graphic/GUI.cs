@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleGameRpg.Engine.Graphic
 {
-    public abstract class GUI
+    public class GUI
     {
-        public abstract string[] ReadMap(string path);
 
-        public abstract void WriteMap(string[] map,                                    
-                                      ConsoleColor backgroundColor, 
-                                      ConsoleColor foregroundColor,
-                                      int consoleWidth,
-                                      int consoleHeight);      
     }
 }

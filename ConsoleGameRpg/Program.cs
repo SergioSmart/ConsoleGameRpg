@@ -1,6 +1,4 @@
-﻿using ConsoleGameRpg.Engine.Graphic;
-using ConsoleGameRpg.Engine.Graphic.Menus;
-using ConsoleGameRpg.Engine.Music;
+﻿using ConsoleGameRpg.Engine.Music;
 using System.Data;
 using System.IO;
 using System.Text;
@@ -11,44 +9,73 @@ namespace ConsoleGameRpg
     public class Program
     {
         //DEVELOP BRANCH
-        private const int ScreenWidth = 170; //170
-        private const int ScreenHeight = 47;  //47
+        private const int _screenWidth = 170; //170
+        private const int _screenHeight = 47;  //47
+        private const int _charInRowEnd = 2;  //47
+        private const int _screenLength = (_screenWidth * _screenHeight) + (_screenHeight * 2) - 2;  //8082
 
-        private const int _mapWidth = 170;
-        private const int _mapHeight = 30;
+        private const int _interfaceWidth = 170; // hz
+        private const int _interfaceHeight = 17; // hz
 
-        public static int playerX = 1;
-        public static int playerY = 1;
+        private static int _playerX = 62;
+        private static int _playerY = 6;
 
-        private static string _map = "";
+        private static string _strScreen = null;
+
 
         public static void Main()
         {
-            Console.SetWindowSize(ScreenWidth, ScreenHeight);
-            Console.SetBufferSize(ScreenWidth, ScreenHeight);
+            Console.SetWindowSize(_screenWidth, _screenHeight);
+            Console.SetBufferSize(_screenWidth, _screenHeight);
             Console.CursorVisible = false;
-
-            string _map = InitMap();
-            var screen = new char[ScreenWidth * ScreenHeight];
+            
+            InitScreen("test2d.txt");  //changed from test2d.txt
+            var screen = new char[_screenLength];
+            
 
             while (true)
             {
+                DateTime dateTime = DateTime.Now;
+                Controls();
+                Console.BackgroundColor= ConsoleColor.DarkBlue;
                 //Map drawing
-                for (int x = 0; x < _mapWidth; x++)
+                screen = _strScreen.ToCharArray();
+                
+                for (int x = 0; x < _screenWidth; x++)
                 {
-                    for (int y = 0; y < _mapHeight; y++)
+                    for (int y = 0; y < _screenHeight; y++)
                     {
-                        screen[y * ScreenWidth + x] = _map[y * _mapWidth + x];
+                        screen[y * _screenWidth + x] = _strScreen[y * _screenWidth + x];
                     }
                 }
 
-               // screen[(playerY + 1) * ScreenWidth + playerX] = '☻';
-                
-                
-                Console.SetCursorPosition(0, 0);
-                Console.Write(screen, 0, ScreenWidth * ScreenHeight);
-            }
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                screen[_playerY * (_screenWidth + _charInRowEnd) + _playerX] = '☻';
 
+
+                //for (int x = 0; x < _mapWidth; x++)
+                //{
+                //    for (int y = 0; y < _mapHeight; y++)
+                //    {
+                //        screen[y * ScreenWidth + x] = _map[y * _mapWidth + x];
+                //    }
+                //}
+
+                // screen[(playerY + 1) * ScreenWidth + playerX] = '☻';
+
+                //for (int i = 0; i < 4500; i++)
+                //{
+                //    screen[4000 + i] = '☻';
+                //}                               
+                char[] stats = $"{dateTime}".ToCharArray();
+                stats.CopyTo(screen, 5507);
+
+                Console.SetCursorPosition(0, 0);
+                Console.Write(screen, 0, _screenLength);
+
+                //5502
+                               
+            }
             /*
               //Map
                 for (int x = 0; x < _mapWidth; x++)
@@ -63,7 +90,7 @@ namespace ConsoleGameRpg
 
                 Console.SetCursorPosition(0, 0);
                 Console.Write(screen, 0, ScreenWidth * ScreenHeight);
-             */
+             
 
 
             //char[] charScreen = new char[ScreenWidth * ScreenHeight];            
@@ -134,37 +161,76 @@ namespace ConsoleGameRpg
             //    //HandleInput(pressedKey, ref playerPositionX, ref playerPositionY, map);
             //    //Thread.Sleep(54);
             //}
-            Console.ReadKey();
+            */
         }
 
-        private static string InitMap()
+        private static void InitScreen(string path)
         {
-            var stringBuilder = new StringBuilder();
-
-            string file = File.ReadAllText("test2d.txt");
-            //char[,] map = new char[ScreenWidth, ScreenHeight];
-
-            //for (int y = 0; y < map.GetLength(1); y++)
-            //{
-            //    for (int x = 0; x < map.GetLength(0); x++)
-            //    {
-            //        stringBuilder.Append(map[x, y]);
-            //    }
-            //}
-            //_map = stringBuilder.ToString();
-
-            return file;
+            _strScreen = File.ReadAllText(path);
         }
 
 
-        private static void HandleInput(ConsoleKeyInfo pressedKey, ref int playerPositionX, ref int playerPositionY, char[,] map) 
+        private static void Controls()
+        {
+            if (Console.KeyAvailable)
+            {
+                ConsoleKey consoleKey = Console.ReadKey(true).Key;
+
+                switch (consoleKey)
+                {
+                    case ConsoleKey.A:
+                        {
+                            _playerX -= 1;
+
+                            if(_strScreen[_playerY * (_screenWidth + _charInRowEnd) + _playerX] == '█')
+                            {
+                                _playerX += 1;
+                            }
+                            break;
+                        }
+                    case ConsoleKey.D:
+                        {
+                            _playerX += 1;
+
+                            if (_strScreen[_playerY * (_screenWidth + _charInRowEnd) + _playerX] == '█')
+                            {
+                                _playerX -= 1;
+                            }
+                            break;
+                        }
+                    case ConsoleKey.W:
+                        {
+                            _playerY -= 1;                            
+
+                            if (_strScreen[_playerY * (_screenWidth + _charInRowEnd) + _playerX] == '█')
+                            {
+                                _playerY += 1;
+                            }
+                            break;
+                        }
+                    case ConsoleKey.S:
+                        {
+                            _playerY += 1;
+
+                            if (_strScreen[_playerY * (_screenWidth + _charInRowEnd) + _playerX] == '█')
+                            {
+                                _playerY -= 1;
+                            }
+
+                            break;
+                        }
+                }
+            }
+        }
+
+        private static void HandleInput(ConsoleKeyInfo pressedKey, ref int playerPositionX, ref int playerPositionY, char[,] map)
         {
             int[] direction = GetDirection(pressedKey);
 
             int nextPlayerPositionX = playerPositionX + direction[0];
             int nextPlayerPositionY = playerPositionY + direction[1];
 
-            if (map[nextPlayerPositionX, nextPlayerPositionY] != '█') 
+            if (map[nextPlayerPositionX, nextPlayerPositionY] != '█')
             {
                 playerPositionX = nextPlayerPositionX;
                 playerPositionY = nextPlayerPositionY;

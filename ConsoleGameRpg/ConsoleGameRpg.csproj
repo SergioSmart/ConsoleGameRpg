@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Engine\Graphic\Levels\" />
+    <Folder Include="Engine\Graphic\Menus\" />
   </ItemGroup>
 
 </Project>
