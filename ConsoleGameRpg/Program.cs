@@ -4,12 +4,19 @@ namespace ConsoleGameRpg
 {
     public class Program
     {
-        private static Level level1 = new Level(62, 6, "test2d.txt", ConsoleColor.Black, ConsoleColor.White);        
+        private static GraphicElement intro = new GraphicElement("resources/menus/intro.txt");
+        
+        private static Level level1 = new Level("test2d.txt", 62, 6, ConsoleColor.Black, ConsoleColor.White);
 
         public static void Main()
         {
-            InitializeConsole(Level.ScreenWidth, Level.ScreenHeight, false);
+            InitializeConsole(Level.ScreenWidth, Level.ScreenHeight, false);          
+            InitializeGraphicElement(intro);         
+            
 
+            intro.WriteElement(34, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
+            intro.WriteElement("Press any key to continue ...", 67, 34, 5, ConsoleColor.White, ConsoleColor.Red);
+            Console.ReadKey();
             DrawLevel(level1);
             /*
               //Map
@@ -103,7 +110,12 @@ namespace ConsoleGameRpg
         {
             Console.SetWindowSize(screenWidth, ScreenHeight);
             Console.SetBufferSize(screenWidth, ScreenHeight);
-            Console.CursorVisible = false;
+            Console.CursorVisible = cursorVisible;
+        }
+
+        private static void InitializeGraphicElement(GraphicElement graphicElement) 
+        {
+            graphicElement.ReadFile();
         }
 
         private static void DrawLevel(Level level)

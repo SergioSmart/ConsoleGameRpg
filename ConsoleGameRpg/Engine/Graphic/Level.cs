@@ -16,15 +16,15 @@
         public static byte ScreenHeight { get; } = 47;  //47
         public static int ScreenLength { get; } = (ScreenWidth * ScreenHeight) + (ScreenHeight * _charInRowEnd) - _charInRowEnd;  //8082
 
-        public Level(int startPlayerPosX, 
+        public Level(string pathToMapFile,
+                   int startPlayerPosX,                   
                    int startPlayerPosY, 
-                   string pathToMapFile, 
                    ConsoleColor backgroundColor, 
                    ConsoleColor foregroundColor)
         {
+            _pathToMapFile = pathToMapFile;
             _playerX = startPlayerPosX;
             _playerY = startPlayerPosY;
-            _pathToMapFile = pathToMapFile;
             _backgroundColor = backgroundColor;
             _foregroundColor = foregroundColor;
         }
@@ -54,7 +54,7 @@
         }
         
         public void DrawPlayer(char player = '☻')
-        {
+        {           
             _screen[_playerY * (ScreenWidth + _charInRowEnd) + _playerX] = player;
         }
 
