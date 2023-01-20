@@ -1,67 +1,16 @@
 ﻿using ConsoleGameRpg.Engine.Graphic;
-using ConsoleGameRpg.Engine.Music;
-using System.Data;
-using System.IO;
-using System.Text;
-using System.Threading;
 
 namespace ConsoleGameRpg
 {
     public class Program
     {
-        //DEVELOP BRANCH
-        //private const int _screenWidth = 170; //170
-        //private const int _screenHeight = 47;  //47
-        //private const int _charInRowEnd = 2;  //47
-        //private const int _screenLength = (_screenWidth * _screenHeight) + (_screenHeight * 2) - 2;  //8082
-
-        //private const int _interfaceWidth = 170; // hz
-        //private const int _interfaceHeight = 17; // hz
-
-        //private static int _playerX = 62;
-        //private static int _playerY = 6;
-
-        private static GUI gui = new GUI(62, 6);
-        private static string _strScreen = null;
+        private static Level level1 = new Level(62, 6, "test2d.txt", ConsoleColor.Black, ConsoleColor.White);        
 
         public static void Main()
         {
-            Console.SetWindowSize(GUI.ScreenWidth, GUI.ScreenHeight);
-            Console.SetBufferSize(GUI.ScreenWidth, GUI.ScreenHeight);
-            Console.CursorVisible = false;
+            InitializeConsole(Level.ScreenWidth, Level.ScreenHeight, false);
 
-            _strScreen = gui.InitializeScreen("test2d.txt");
-            Console.WriteLine(_strScreen.Length);
-            var screen = new char[GUI.ScreenLength];
-            
-            while (true)
-            {
-                gui.ControlBehavior(_strScreen);
-                //DateTime dT = DateTime.Now;
-
-                //Map drawing
-                //screen = _strScreen.ToCharArray();
-
-                //for (int x = 0; x < GUI.ScreenWidth; x++)
-                //{
-                //    for (int y = 0; y < GUI.ScreenHeight; y++)
-                //    {
-                //        screen[y * GUI.ScreenWidth + x] = _strScreen[y * GUI.ScreenWidth + x];
-                //    }
-                //}
-
-                gui.ConstructScreen(screen, _strScreen);
-                //screen[GUI.playerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.playerX] = '☻';
-                gui.DrawPlayer(screen);
-                            
-                //char[] stats = $"{dT}".ToCharArray();
-                //stats.CopyTo(screen, 5507);
-
-                //Console.SetCursorPosition(0, 0);
-                //Console.Write(screen, 0, _screenLength);
-                gui.DrawScreen(screen, 0, screen.Length);
-                //5502                             
-            }
+            DrawLevel(level1);
             /*
               //Map
                 for (int x = 0; x < _mapWidth; x++)
@@ -150,66 +99,79 @@ namespace ConsoleGameRpg
             */
         }
 
-        private static void InitScreen(string path)
+        private static void InitializeConsole(int screenWidth, int ScreenHeight, bool cursorVisible)
         {
-            _strScreen = File.ReadAllText(path);
+            Console.SetWindowSize(screenWidth, ScreenHeight);
+            Console.SetBufferSize(screenWidth, ScreenHeight);
+            Console.CursorVisible = false;
         }
 
+        private static void DrawLevel(Level level)
+        {
+            level.InitializeScreen();
 
-        //private static void Controls()
-        //{
-        //    if (Console.KeyAvailable)
-        //    {
-        //        ConsoleKey consoleKey = Console.ReadKey(true).Key;
+            while (true)
+            {
+                level.ControlBehavior();
+                level.ConstructScreen();
+                level.DrawPlayer();
+                level.DrawScreen();
+            }
 
-        //        switch (consoleKey)
-        //        {
-        //            case ConsoleKey.A:
-        //                {
-        //                    GUI.PlayerX -= 1;
+            //private static void Controls()
+            //{
+            //    if (Console.KeyAvailable)
+            //    {
+            //        ConsoleKey consoleKey = Console.ReadKey(true).Key;
 
-        //                    if(_strScreen[GUI.PlayerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.PlayerX] == '█')
-        //                    {
-        //                        GUI.PlayerX += 1;
-        //                    }
-        //                    break;
-        //                }
-        //            case ConsoleKey.D:
-        //                {
-        //                    GUI.PlayerX += 1;
+            //        switch (consoleKey)
+            //        {
+            //            case ConsoleKey.A:
+            //                {
+            //                    GUI.PlayerX -= 1;
 
-        //                    if (_strScreen[GUI.PlayerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.PlayerX] == '█')
-        //                    {
-        //                        GUI.PlayerX -= 1;
-        //                    }
-        //                    break;
-        //                }
-        //            case ConsoleKey.W:
-        //                {
-        //                    GUI.PlayerY -= 1;                            
+            //                    if(_strScreen[GUI.PlayerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.PlayerX] == '█')
+            //                    {
+            //                        GUI.PlayerX += 1;
+            //                    }
+            //                    break;
+            //                }
+            //            case ConsoleKey.D:
+            //                {
+            //                    GUI.PlayerX += 1;
 
-        //                    if (_strScreen[GUI.PlayerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.PlayerX] == '█')
-        //                    {
-        //                        GUI.PlayerY += 1;
-        //                    }
-        //                    break;
-        //                }
-        //            case ConsoleKey.S:
-        //                {
-        //                    GUI.PlayerY += 1;
+            //                    if (_strScreen[GUI.PlayerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.PlayerX] == '█')
+            //                    {
+            //                        GUI.PlayerX -= 1;
+            //                    }
+            //                    break;
+            //                }
+            //            case ConsoleKey.W:
+            //                {
+            //                    GUI.PlayerY -= 1;                            
 
-        //                    if (_strScreen[GUI.PlayerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.PlayerX] == '█')
-        //                    {
-        //                        GUI.PlayerY -= 1;
-        //                    }
+            //                    if (_strScreen[GUI.PlayerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.PlayerX] == '█')
+            //                    {
+            //                        GUI.PlayerY += 1;
+            //                    }
+            //                    break;
+            //                }
+            //            case ConsoleKey.S:
+            //                {
+            //                    GUI.PlayerY += 1;
 
-        //                    break;
-        //                }
-        //        }
-        //    }
-        //}
+            //                    if (_strScreen[GUI.PlayerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.PlayerX] == '█')
+            //                    {
+            //                        GUI.PlayerY -= 1;
+            //                    }
 
-        private static void HandleInput(ConsoleKeyInfo pressedKey, ref int playerPositionX, ref int playerPositionY, char[,] map)
+            //                    break;
+            //                }
+            //        }
+            //    }
+            //}
+        }
+        /*private static void HandleInput(ConsoleKeyInfo pressedKey, ref int playerPositionX, ref int playerPositionY, char[,] map)
         {
             int[] direction = GetDirection(pressedKey);
 
@@ -322,6 +284,6 @@ namespace ConsoleGameRpg
             }
 
             return maxLength;
-        }
+        }*/
     }
 }
