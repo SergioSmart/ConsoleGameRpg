@@ -4,18 +4,19 @@ namespace ConsoleGameRpg
 {
     public class Program
     {
-        private static GraphicElement intro = new GraphicElement("resources/menus/intro.txt");
-        
+        private static GraphicElement intro = new GraphicElement("resources/menus/intro.txt");       
         private static Level level1 = new Level("test2d.txt", 62, 6, ConsoleColor.Black, ConsoleColor.White);
+
 
         public static void Main()
         {
             InitializeConsole(Level.ScreenWidth, Level.ScreenHeight, false);          
+            
             InitializeGraphicElement(intro);         
             
 
-            intro.WriteElement(34, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
-            intro.WriteElement("Press any key to continue ...", 67, 34, 5, ConsoleColor.White, ConsoleColor.Red);
+            intro.WriteElement(36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
+            intro.WriteElement("Press any key to continue ...", 72, 34, 5, ConsoleColor.Blue, ConsoleColor.White);
             Console.ReadKey();
             DrawLevel(level1);
             /*
@@ -129,60 +130,8 @@ namespace ConsoleGameRpg
                 level.DrawPlayer();
                 level.DrawScreen();
             }
-
-            //private static void Controls()
-            //{
-            //    if (Console.KeyAvailable)
-            //    {
-            //        ConsoleKey consoleKey = Console.ReadKey(true).Key;
-
-            //        switch (consoleKey)
-            //        {
-            //            case ConsoleKey.A:
-            //                {
-            //                    GUI.PlayerX -= 1;
-
-            //                    if(_strScreen[GUI.PlayerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.PlayerX] == '█')
-            //                    {
-            //                        GUI.PlayerX += 1;
-            //                    }
-            //                    break;
-            //                }
-            //            case ConsoleKey.D:
-            //                {
-            //                    GUI.PlayerX += 1;
-
-            //                    if (_strScreen[GUI.PlayerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.PlayerX] == '█')
-            //                    {
-            //                        GUI.PlayerX -= 1;
-            //                    }
-            //                    break;
-            //                }
-            //            case ConsoleKey.W:
-            //                {
-            //                    GUI.PlayerY -= 1;                            
-
-            //                    if (_strScreen[GUI.PlayerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.PlayerX] == '█')
-            //                    {
-            //                        GUI.PlayerY += 1;
-            //                    }
-            //                    break;
-            //                }
-            //            case ConsoleKey.S:
-            //                {
-            //                    GUI.PlayerY += 1;
-
-            //                    if (_strScreen[GUI.PlayerY * (GUI.ScreenWidth + GUI.CharInRowEnd) + GUI.PlayerX] == '█')
-            //                    {
-            //                        GUI.PlayerY -= 1;
-            //                    }
-
-            //                    break;
-            //                }
-            //        }
-            //    }
-            //}
         }
+
         /*private static void HandleInput(ConsoleKeyInfo pressedKey, ref int playerPositionX, ref int playerPositionY, char[,] map)
         {
             int[] direction = GetDirection(pressedKey);
