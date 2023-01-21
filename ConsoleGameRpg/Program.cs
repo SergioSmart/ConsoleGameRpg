@@ -133,31 +133,41 @@ namespace ConsoleGameRpg
         private static void DrawMainMenu(GUI graphicInterface)
         {
             //_cultureInfo = CultureInfo.CreateSpecificCulture("ru");
+            //Console.BackgroundColor = ConsoleColor.DarkRed;
+            //Console.ForegroundColor = ConsoleColor.White;
+            //Console.Clear();
 
             graphicInterface.WriteElement("resources/graphicElements/mainMenu.txt", 18, 1, 0, ConsoleColor.DarkRed, ConsoleColor.White);
-            graphicInterface.WriteText(new string('╦', 170), 0, 17, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
-            graphicInterface.WriteText(new string('╩', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
+            graphicInterface.WriteText(new string('╦', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
+            graphicInterface.WriteText(new string('╩', 170), 0, 19, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
 
-            graphicInterface.WriteText(new string('=', 31), 69, 22, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
-            graphicInterface.WriteText(new string('=', 31), 69, 34, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+            graphicInterface.WriteText(new string('=', 31), 69, 23, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+            graphicInterface.WriteText(new string('=', 31), 69, 35, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
             for (int i = 0; i < 11; i++)
             {
-                graphicInterface.WriteText(new string('I', 1), 69, 23 + i, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+                graphicInterface.WriteText(new string('I', 1), 69, 24 + i, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
             }
             for (int i = 0; i < 11; i++)
             {
-                graphicInterface.WriteText(new string('I', 1), 99, 23 + i, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+                graphicInterface.WriteText(new string('I', 1), 99, 24 + i, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
             }
 
             graphicInterface.WriteText(_resManager.GetString("MainMenu_StartGame", _cultureInfo), 
                                         GUI.PlaceInCenter(_resManager.GetString("MainMenu_StartGame", _cultureInfo)), 
-                                        25, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
+                                        26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
             graphicInterface.WriteText(_resManager.GetString("MainMenu_Settings", _cultureInfo), 
                                         GUI.PlaceInCenter(_resManager.GetString("MainMenu_Settings", _cultureInfo)), 
-                                        28, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
+                                        29, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
             graphicInterface.WriteText(_resManager.GetString("MainMenu_Exit", _cultureInfo),
                                         GUI.PlaceInCenter(_resManager.GetString("MainMenu_Exit", _cultureInfo)),
-                                        31, 0, ConsoleColor.Red, ConsoleColor.White);
+                                        32, 0, ConsoleColor.Red, ConsoleColor.White);
+
+            graphicInterface.WriteText(new string('╦', 170), 0, 39, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
+            graphicInterface.WriteText(new string('╩', 170), 0, 40, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
+
+
+
+            //graphicInterface.WriteElement("resources/graphicElements/mainMenuImg1.txt", 2, )
         }
 
 
