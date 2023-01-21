@@ -13,3 +13,5 @@ C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\refint\
 C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.pdb
 C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.genruntimeconfig.cache
 C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ref\ConsoleGameRpg.dll
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.Engine.Resources.Languages.Lang.resources
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.csproj.GenerateResource.cache

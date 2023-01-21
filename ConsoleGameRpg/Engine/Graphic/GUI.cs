@@ -1,11 +1,11 @@
 ﻿namespace ConsoleGameRpg.Engine.Graphic
 {
-    public class GraphicInterface
+    public class GUI
     {
         //private string _pathToFile;
         //private char[,] _graphicElement;
 
-        public GraphicInterface() { }
+        public GUI() { }
 
         //public GraphicElement(string pathToFile)
         //{
@@ -62,6 +62,11 @@
                 Console.Write("\n");
                 Thread.Sleep(delay);
             }    
+        }
+
+        public static int PlaceInCenter(string gameString)
+        {
+            return (Level.ScreenWidth - gameString.Length) / 2;
         }
 
         //public void WriteElement(int cursorPosLeft, int cursorPosTop, int delay, ConsoleColor backgroundColor, ConsoleColor foregroundColor)

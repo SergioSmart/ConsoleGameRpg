@@ -1,22 +1,25 @@
 ﻿using ConsoleGameRpg.Engine.Graphic;
+using System.Globalization;
+using System.Resources;
 
 namespace ConsoleGameRpg
 {
     public class Program
     {
-        private static GraphicInterface intro = new GraphicInterface();       
-        private static GraphicInterface mainMenu = new GraphicInterface();       
+        private static GUI intro = new GUI();       
+        private static GUI mainMenu = new GUI();       
         //private static GraphicElement mainMenu = new GraphicElement("resources/graphicElements/mainMenu.txt");       
-        
+
         private static Level level1 = new Level("test2d.txt", 62, 6, ConsoleColor.Black, ConsoleColor.White);
 
         public static void Main()
         {
             InitializeConsole(Level.ScreenWidth, Level.ScreenHeight, false);                     
+            //var cult = CultureInfo.CurrentCulture.ToString();
 
-            DrawIntro();  
+            DrawIntro(intro);  
             Console.ReadKey();
-            DrawMainMenu();
+            DrawMainMenu(mainMenu);
             Console.ReadKey();
             
             //DrawLevel(level1);
@@ -113,24 +116,35 @@ namespace ConsoleGameRpg
             Console.SetWindowSize(screenWidth, ScreenHeight);
             Console.SetBufferSize(screenWidth, ScreenHeight);
             Console.CursorVisible = cursorVisible;
+
+            //var culture = new CultureInfo.CreateSpecificCulture("ru-ru");
+            CultureInfo.CreateSpecificCulture("ru-ru");
+            //var resourceManager = new ResourceManager();
         }
 
-        private static void DrawIntro()
+        private static void DrawIntro(GUI graphicInterface)
         {
-            intro.WriteElement("resources/graphicElements/intro.txt", 36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
-            intro.WriteText("Press any key to continue ...", 72, 34, 5, ConsoleColor.Blue, ConsoleColor.White);
+            graphicInterface.WriteElement("resources/graphicElements/intro.txt", 36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
+            graphicInterface.WriteText(GameLocalization.TextEnglish[0], GUI.PlaceInCenter(GameLocalization.TextEnglish[0]), 34, 5, ConsoleColor.Blue, ConsoleColor.White);
         }
 
-        private static void DrawMainMenu()
+        private static void DrawMainMenu(GUI graphicInterface)
         {
-            mainMenu.WriteElement("resources/graphicElements/mainMenu.txt", 18, 1, 0, ConsoleColor.DarkRed, ConsoleColor.White);
-            mainMenu.WriteText(new string(' ', 170), 0, 17, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
-            mainMenu.WriteText(new string(' ', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);            
+            graphicInterface.WriteElement("resources/graphicElements/mainMenu.txt", 18, 1, 0, ConsoleColor.DarkRed, ConsoleColor.White);
+            graphicInterface.WriteText(new string(' ', 170), 0, 17, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
+            graphicInterface.WriteText(new string(' ', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
+
+            graphicInterface.WriteText(GameLocalization.TextEnglish[1], GUI.PlaceInCenter(GameLocalization.TextEnglish[1]), 23, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
         }
 
         //private static void InitializeGraphicElement(GraphicElement graphicElement) 
         //{
         //    graphicElement.ReadFile();
+        //}
+
+        //private static int WriteInCenter(string gameString)
+        //{
+        //    return (Level.ScreenWidth - gameString.Length) / 2;
         //}
 
         private static void DrawLevel(Level level)
