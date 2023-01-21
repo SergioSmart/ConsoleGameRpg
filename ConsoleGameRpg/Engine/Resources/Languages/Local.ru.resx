@@ -133,7 +133,7 @@
     <value>   Начать игру   </value>
   </data>
   <data name="MainMenu_Tip" xml:space="preserve">
-    <value>Подсказка: чтобы управлять меню используйте клавиши W↑ и S↓</value>
+    <value>Подсказка: чтобы управлять меню  используйте клавиши W↑ и S↓</value>
     <comment>Чтобы перенести строку, используйте ALT+255</comment>
   </data>
 </root>

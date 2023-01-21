@@ -51,7 +51,6 @@
 
             Console.BackgroundColor = backgroundColor;
             Console.ForegroundColor = foregroundColor;
-            //Console.Clear();
             for (int y = 0; y < graphicElement.GetLength(1); y++)
             {
                 for (int x = 0; x < graphicElement.GetLength(0); x++)

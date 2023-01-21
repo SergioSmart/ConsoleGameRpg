@@ -133,7 +133,7 @@
     <value>   Start game   </value>
   </data>
   <data name="MainMenu_Tip" xml:space="preserve">
-    <value>Hint: in order to control menu use buttons W↑ and S↓</value>
+    <value>Hint: in order to control menu  use buttons W↑ and S↓</value>
     <comment>To use '\n' print ALT+255</comment>
   </data>
 </root>

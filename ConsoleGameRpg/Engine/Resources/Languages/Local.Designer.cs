@@ -106,7 +106,7 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Hint: in order to control menu use buttons W↑ and S↓.
+        ///   Ищет локализованную строку, похожую на Hint: in order to control menu  use buttons W↑ and S↓.
         /// </summary>
         internal static string MainMenu_Tip {
             get {
