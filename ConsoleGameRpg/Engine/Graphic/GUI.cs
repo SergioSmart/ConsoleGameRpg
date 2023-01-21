@@ -51,7 +51,7 @@
 
             Console.BackgroundColor = backgroundColor;
             Console.ForegroundColor = foregroundColor;
-            Console.Clear();
+            //Console.Clear();
             for (int y = 0; y < graphicElement.GetLength(1); y++)
             {
                 for (int x = 0; x < graphicElement.GetLength(0); x++)
@@ -91,11 +91,17 @@
                               ConsoleColor backgroundColor, 
                               ConsoleColor foregroundColor)
         {
+            int amountOfEnter = 1;
             Console.BackgroundColor = backgroundColor;
             Console.ForegroundColor = foregroundColor;
             Console.SetCursorPosition(cursorPosLeft, cursorPosTop);
             for (int i = 0; i < text.Length; i++)
-            {            
+            {
+                if (text[i] == ' ') //ALT+255 non-breaking space
+                {
+                    Console.SetCursorPosition(cursorPosLeft, cursorPosTop + amountOfEnter);
+                    amountOfEnter++;
+                }
                 Console.Write(text[i]);
                 Thread.Sleep(delay);
             }

@@ -70,6 +70,15 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на  This console application created as a pet-project by Sergey V. For informational purposes only. .
+        /// </summary>
+        internal static string MainMenu_Credits {
+            get {
+                return ResourceManager.GetString("MainMenu_Credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на    Exit def   .
         /// </summary>
         internal static string MainMenu_Exit {
@@ -93,6 +102,15 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         internal static string MainMenu_StartGame {
             get {
                 return ResourceManager.GetString("MainMenu_StartGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Hint: in order to control menu use buttons W↑ and S↓.
+        /// </summary>
+        internal static string MainMenu_Tip {
+            get {
+                return ResourceManager.GetString("MainMenu_Tip", resourceCulture);
             }
         }
     }

@@ -126,17 +126,23 @@ namespace ConsoleGameRpg
 
         private static void DrawIntro(GUI graphicInterface)
         {
+            _cultureInfo = CultureInfo.CreateSpecificCulture("en");  //Uncomment this to check different localizations
+
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Clear();
+
             graphicInterface.WriteElement("resources/graphicElements/intro.txt", 36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
+            //Console.Clear();
             graphicInterface.WriteText(_resManager.GetString("Intro_PressAnyKey", _cultureInfo), GUI.PlaceInCenter(_resManager.GetString("Intro_PressAnyKey", _cultureInfo)), 34, 5, ConsoleColor.Blue, ConsoleColor.White);
         }
 
         private static void DrawMainMenu(GUI graphicInterface)
         {
-            //_cultureInfo = CultureInfo.CreateSpecificCulture("ru");
-            //Console.BackgroundColor = ConsoleColor.DarkRed;
-            //Console.ForegroundColor = ConsoleColor.White;
-            //Console.Clear();
+            Console.BackgroundColor = ConsoleColor.DarkRed;
+            Console.ForegroundColor = ConsoleColor.White;            
 
+            Console.Clear();
             graphicInterface.WriteElement("resources/graphicElements/mainMenu.txt", 18, 1, 0, ConsoleColor.DarkRed, ConsoleColor.White);
             graphicInterface.WriteText(new string('╦', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 19, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
@@ -165,9 +171,14 @@ namespace ConsoleGameRpg
             graphicInterface.WriteText(new string('╦', 170), 0, 39, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 40, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
 
+            graphicInterface.WriteElement("resources/graphicElements/mainMenuTip.txt", 6, 24, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
+            //Console.Clear();
+            graphicInterface.WriteText(_resManager.GetString("MainMenu_Tip", _cultureInfo), 21, 24, 11, ConsoleColor.DarkGreen, ConsoleColor.White);
 
-
-            //graphicInterface.WriteElement("resources/graphicElements/mainMenuImg1.txt", 2, )
+            graphicInterface.WriteText(_resManager.GetString("MainMenu_Credits", _cultureInfo), 
+                                        GUI.PlaceInCenter(_resManager.GetString("MainMenu_Credits", _cultureInfo)), 
+                                        45, 1, ConsoleColor.DarkRed, ConsoleColor.Yellow);
+        
         }
 
 
