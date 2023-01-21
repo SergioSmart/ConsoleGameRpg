@@ -173,7 +173,7 @@ namespace ConsoleGameRpg
 
             graphicInterface.WriteElement("resources/graphicElements/mainMenuTip.txt", 6, 24, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
             //Console.Clear();
-            graphicInterface.WriteText(_resManager.GetString("MainMenu_Tip", _cultureInfo), 21, 24, 11, ConsoleColor.DarkGreen, ConsoleColor.White);
+            graphicInterface.WriteText(_resManager.GetString("MainMenu_Tip", _cultureInfo), 21, 24, 1, ConsoleColor.DarkGreen, ConsoleColor.White);
 
             graphicInterface.WriteText(_resManager.GetString("MainMenu_Credits", _cultureInfo), 
                                         GUI.PlaceInCenter(_resManager.GetString("MainMenu_Credits", _cultureInfo)), 
