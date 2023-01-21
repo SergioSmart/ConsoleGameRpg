@@ -120,6 +120,9 @@
   <data name="Intro_PressAnyKey" xml:space="preserve">
     <value>Press any key to continue . . .</value>
   </data>
+  <data name="MainMenu_Exit" xml:space="preserve">
+    <value>   Exit   </value>
+  </data>
   <data name="MainMenu_Settings" xml:space="preserve">
     <value>   Settings   </value>
   </data>

@@ -70,6 +70,15 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на    Exit def   .
+        /// </summary>
+        internal static string MainMenu_Exit {
+            get {
+                return ResourceManager.GetString("MainMenu_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на    Settings  def .
         /// </summary>
         internal static string MainMenu_Settings {

@@ -7,15 +7,15 @@ namespace ConsoleGameRpg
 {
     public class Program
     {
-        private static ResourceManager resourceManager = new ResourceManager("ConsoleGameRpg.Engine.Resources.Languages.Local", typeof(Program).Assembly);
-        private static CultureInfo cultureInfo = CultureInfo.CurrentCulture;
-        //private static CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture("ru");
+        private static ResourceManager _resManager = new ResourceManager("ConsoleGameRpg.Engine.Resources.Languages.Local", typeof(Program).Assembly);
+        private static CultureInfo _cultureInfo = CultureInfo.CurrentCulture;
 
         private static GUI intro = new GUI();       
-        private static GUI mainMenu = new GUI();       
-        //private static GraphicElement mainMenu = new GraphicElement("resources/graphicElements/mainMenu.txt");       
+        private static GUI mainMenu = new GUI();
 
-        private static Level level1 = new Level("test2d.txt", 62, 6, ConsoleColor.Black, ConsoleColor.White);
+        private static byte _selectroMenu = 0;
+
+        //private static Level level1 = new Level("test2d.txt", 62, 6, ConsoleColor.Black, ConsoleColor.White);
 
         public static void Main()
         {
@@ -23,6 +23,7 @@ namespace ConsoleGameRpg
 
             DrawIntro(intro);  
             Console.ReadKey();
+
             DrawMainMenu(mainMenu);
             Console.ReadKey();
             
@@ -121,16 +122,12 @@ namespace ConsoleGameRpg
             Console.SetWindowSize(screenWidth, ScreenHeight);
             Console.SetBufferSize(screenWidth, ScreenHeight);
             Console.CursorVisible = cursorVisible;
-
-            //var culture = new CultureInfo.CreateSpecificCulture("ru-ru");
-            //CultureInfo.CreateSpecificCulture("ru-ru");
-            //var resourceManager = new ResourceManager();
         }
 
         private static void DrawIntro(GUI graphicInterface)
         {
             graphicInterface.WriteElement("resources/graphicElements/intro.txt", 36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
-            graphicInterface.WriteText(resourceManager.GetString("Intro_PressAnyKey", cultureInfo), GUI.PlaceInCenter(resourceManager.GetString("Intro_PressAnyKey", cultureInfo)), 34, 5, ConsoleColor.Blue, ConsoleColor.White);
+            graphicInterface.WriteText(_resManager.GetString("Intro_PressAnyKey", _cultureInfo), GUI.PlaceInCenter(_resManager.GetString("Intro_PressAnyKey", _cultureInfo)), 34, 5, ConsoleColor.Blue, ConsoleColor.White);
         }
 
         private static void DrawMainMenu(GUI graphicInterface)
@@ -139,19 +136,17 @@ namespace ConsoleGameRpg
             graphicInterface.WriteText(new string(' ', 170), 0, 17, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string(' ', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White); 
 
-            graphicInterface.WriteText(resourceManager.GetString("MainMenu_StartGame", cultureInfo), GUI.PlaceInCenter(resourceManager.GetString("MainMenu_StartGame", cultureInfo)), 23, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
-            graphicInterface.WriteText(resourceManager.GetString("MainMenu_Settings", cultureInfo), GUI.PlaceInCenter(resourceManager.GetString("MainMenu_Settings", cultureInfo)), 25, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
+            graphicInterface.WriteText(_resManager.GetString("MainMenu_StartGame", _cultureInfo), 
+                                        GUI.PlaceInCenter(_resManager.GetString("MainMenu_StartGame", _cultureInfo)), 
+                                        23, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
+            graphicInterface.WriteText(_resManager.GetString("MainMenu_Settings", _cultureInfo), 
+                                        GUI.PlaceInCenter(_resManager.GetString("MainMenu_Settings", _cultureInfo)), 
+                                        25, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
+            graphicInterface.WriteText(_resManager.GetString("MainMenu_Exit", _cultureInfo),
+                                        GUI.PlaceInCenter(_resManager.GetString("MainMenu_Exit", _cultureInfo)),
+                                        25, 0, ConsoleColor.Red, ConsoleColor.White);
         }
 
-        //private static void InitializeGraphicElement(GraphicElement graphicElement) 
-        //{
-        //    graphicElement.ReadFile();
-        //}
-
-        //private static int WriteInCenter(string gameString)
-        //{
-        //    return (Level.ScreenWidth - gameString.Length) / 2;
-        //}
 
         private static void DrawLevel(Level level)
         {
