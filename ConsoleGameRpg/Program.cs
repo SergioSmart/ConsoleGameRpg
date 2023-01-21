@@ -125,8 +125,7 @@ namespace ConsoleGameRpg
         {
             mainMenu.WriteElement("resources/graphicElements/mainMenu.txt", 18, 1, 0, ConsoleColor.DarkRed, ConsoleColor.White);
             mainMenu.WriteText(new string(' ', 170), 0, 17, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
-            mainMenu.WriteText(new string(' ', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
-            
+            mainMenu.WriteText(new string(' ', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);            
         }
 
         //private static void InitializeGraphicElement(GraphicElement graphicElement) 

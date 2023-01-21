@@ -5,10 +5,7 @@
         //private string _pathToFile;
         //private char[,] _graphicElement;
 
-        public GraphicInterface()
-        {
-
-        }
+        public GraphicInterface() { }
 
         //public GraphicElement(string pathToFile)
         //{
@@ -39,7 +36,10 @@
         //            _graphicElement[x, y] = file[y][x];
         //}
 
-        public void WriteElement(string pathToFile, int cursorPosLeft, int cursorPosTop, int delay, ConsoleColor backgroundColor, ConsoleColor foregroundColor) 
+        public void WriteElement(string pathToFile, int cursorPosLeft, 
+                                 int cursorPosTop, int delay, 
+                                 ConsoleColor backgroundColor, 
+                                 ConsoleColor foregroundColor) 
         {
             string[] file = File.ReadAllLines(pathToFile);
 
@@ -81,7 +81,10 @@
         //    }
         //}
 
-        public void WriteText(string text, int cursorPosLeft, int cursorPosTop, int delay, ConsoleColor backgroundColor, ConsoleColor foregroundColor)
+        public void WriteText(string text, int cursorPosLeft, 
+                              int cursorPosTop, int delay, 
+                              ConsoleColor backgroundColor, 
+                              ConsoleColor foregroundColor)
         {
             Console.BackgroundColor = backgroundColor;
             Console.ForegroundColor = foregroundColor;
