@@ -1,11 +1,16 @@
 ﻿using ConsoleGameRpg.Engine.Graphic;
 using System.Globalization;
 using System.Resources;
+using ConsoleGameRpg.Engine.Resources.Languages;
 
 namespace ConsoleGameRpg
 {
     public class Program
     {
+        private static ResourceManager resourceManager = new ResourceManager("ConsoleGameRpg.Engine.Resources.Languages.Local", typeof(Program).Assembly);
+        private static CultureInfo cultureInfo = CultureInfo.CurrentCulture;
+        //private static CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture("ru");
+
         private static GUI intro = new GUI();       
         private static GUI mainMenu = new GUI();       
         //private static GraphicElement mainMenu = new GraphicElement("resources/graphicElements/mainMenu.txt");       
@@ -14,14 +19,14 @@ namespace ConsoleGameRpg
 
         public static void Main()
         {
-            InitializeConsole(Level.ScreenWidth, Level.ScreenHeight, false);                     
-            //var cult = CultureInfo.CurrentCulture.ToString();
+            InitializeConsole(Level.ScreenWidth, Level.ScreenHeight, false);          
 
             DrawIntro(intro);  
             Console.ReadKey();
             DrawMainMenu(mainMenu);
             Console.ReadKey();
             
+
             //DrawLevel(level1);
             /*
               //Map
@@ -118,23 +123,24 @@ namespace ConsoleGameRpg
             Console.CursorVisible = cursorVisible;
 
             //var culture = new CultureInfo.CreateSpecificCulture("ru-ru");
-            CultureInfo.CreateSpecificCulture("ru-ru");
+            //CultureInfo.CreateSpecificCulture("ru-ru");
             //var resourceManager = new ResourceManager();
         }
 
         private static void DrawIntro(GUI graphicInterface)
         {
             graphicInterface.WriteElement("resources/graphicElements/intro.txt", 36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
-            graphicInterface.WriteText(GameLocalization.TextEnglish[0], GUI.PlaceInCenter(GameLocalization.TextEnglish[0]), 34, 5, ConsoleColor.Blue, ConsoleColor.White);
+            graphicInterface.WriteText(resourceManager.GetString("Intro_PressAnyKey", cultureInfo), GUI.PlaceInCenter(resourceManager.GetString("Intro_PressAnyKey", cultureInfo)), 34, 5, ConsoleColor.Blue, ConsoleColor.White);
         }
 
         private static void DrawMainMenu(GUI graphicInterface)
         {
             graphicInterface.WriteElement("resources/graphicElements/mainMenu.txt", 18, 1, 0, ConsoleColor.DarkRed, ConsoleColor.White);
             graphicInterface.WriteText(new string(' ', 170), 0, 17, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
-            graphicInterface.WriteText(new string(' ', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
+            graphicInterface.WriteText(new string(' ', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White); 
 
-            graphicInterface.WriteText(GameLocalization.TextEnglish[1], GUI.PlaceInCenter(GameLocalization.TextEnglish[1]), 23, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
+            graphicInterface.WriteText(resourceManager.GetString("MainMenu_StartGame", cultureInfo), GUI.PlaceInCenter(resourceManager.GetString("MainMenu_StartGame", cultureInfo)), 23, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
+            graphicInterface.WriteText(resourceManager.GetString("MainMenu_Settings", cultureInfo), GUI.PlaceInCenter(resourceManager.GetString("MainMenu_Settings", cultureInfo)), 25, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
         }
 
         //private static void InitializeGraphicElement(GraphicElement graphicElement) 

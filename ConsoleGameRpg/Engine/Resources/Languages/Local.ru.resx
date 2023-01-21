@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Intro-PressAnyKey" xml:space="preserve">
-    <value>Press any key to continue . . . </value>
+  <data name="Intro_PressAnyKey" xml:space="preserve">
+    <value>Нажмите любую клавишу чтобы продолжить . . .</value>
   </data>
-  <data name="MainMenu-Start" xml:space="preserve">
-    <value>  Start game  </value>
+  <data name="MainMenu_Settings" xml:space="preserve">
+    <value>   Настройки   </value>
+  </data>
+  <data name="MainMenu_StartGame" xml:space="preserve">
+    <value>   Начать игру   </value>
   </data>
 </root>

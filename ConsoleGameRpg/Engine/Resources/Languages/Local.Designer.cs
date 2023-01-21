@@ -22,14 +22,14 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Lang {
+    internal class Local {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Lang() {
+        internal Local() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ConsoleGameRpg.Engine.Resources.Languages.Lang", typeof(Lang).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ConsoleGameRpg.Engine.Resources.Languages.Local", typeof(Local).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,29 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Press any key to continue . . . .
+        ///   Ищет локализованную строку, похожую на Press any key to continue . . . def.
         /// </summary>
         internal static string Intro_PressAnyKey {
             get {
-                return ResourceManager.GetString("Intro-PressAnyKey", resourceCulture);
+                return ResourceManager.GetString("Intro_PressAnyKey", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на   Start game  .
+        ///   Ищет локализованную строку, похожую на    Settings  def .
         /// </summary>
-        internal static string MainMenu_Start {
+        internal static string MainMenu_Settings {
             get {
-                return ResourceManager.GetString("MainMenu-Start", resourceCulture);
+                return ResourceManager.GetString("MainMenu_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на    Start game def .
+        /// </summary>
+        internal static string MainMenu_StartGame {
+            get {
+                return ResourceManager.GetString("MainMenu_StartGame", resourceCulture);
             }
         }
     }
