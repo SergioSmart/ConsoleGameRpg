@@ -4,22 +4,21 @@ namespace ConsoleGameRpg
 {
     public class Program
     {
-        private static GraphicElement intro = new GraphicElement("resources/graphicElements/intro.txt");       
-        private static GraphicElement mainMenu = new GraphicElement("resources/graphicElements/mainMenu.txt");       
+        private static GraphicInterface intro = new GraphicInterface();       
+        private static GraphicInterface mainMenu = new GraphicInterface();       
+        //private static GraphicElement mainMenu = new GraphicElement("resources/graphicElements/mainMenu.txt");       
         
         private static Level level1 = new Level("test2d.txt", 62, 6, ConsoleColor.Black, ConsoleColor.White);
 
         public static void Main()
         {
             InitializeConsole(Level.ScreenWidth, Level.ScreenHeight, false);                     
-            InitializeGraphicElement(intro);
-            InitializeGraphicElement(mainMenu);
 
             DrawIntro();  
             Console.ReadKey();
             DrawMainMenu();
             Console.ReadKey();
-
+            
             //DrawLevel(level1);
             /*
               //Map
@@ -118,21 +117,22 @@ namespace ConsoleGameRpg
 
         private static void DrawIntro()
         {
-            intro.WriteElement(36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
-            intro.WriteElement("Press any key to continue ...", 72, 34, 5, ConsoleColor.Blue, ConsoleColor.White);
+            intro.WriteElement("resources/graphicElements/intro.txt", 36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
+            intro.WriteText("Press any key to continue ...", 72, 34, 5, ConsoleColor.Blue, ConsoleColor.White);
         }
 
         private static void DrawMainMenu()
         {
-            mainMenu.WriteElement(18, 1, 0, ConsoleColor.DarkRed, ConsoleColor.White);
-            mainMenu.WriteElement(new string(' ', 170), 0, 17, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
-            mainMenu.WriteElement(new string(' ', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
+            mainMenu.WriteElement("resources/graphicElements/mainMenu.txt", 18, 1, 0, ConsoleColor.DarkRed, ConsoleColor.White);
+            mainMenu.WriteText(new string(' ', 170), 0, 17, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
+            mainMenu.WriteText(new string(' ', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
+            
         }
 
-        private static void InitializeGraphicElement(GraphicElement graphicElement) 
-        {
-            graphicElement.ReadFile();
-        }
+        //private static void InitializeGraphicElement(GraphicElement graphicElement) 
+        //{
+        //    graphicElement.ReadFile();
+        //}
 
         private static void DrawLevel(Level level)
         {
