@@ -126,14 +126,13 @@ namespace ConsoleGameRpg
 
         private static void DrawIntro(GUI graphicInterface)
         {
-            _cultureInfo = CultureInfo.CreateSpecificCulture("en");  //Uncomment this to check different localizations
+            //_cultureInfo = CultureInfo.CreateSpecificCulture("en");  //Uncomment this to check different localizations
 
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Clear();
 
             graphicInterface.WriteElement("resources/graphicElements/intro.txt", 36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
-            //Console.Clear();
             graphicInterface.WriteText(_resManager.GetString("Intro_PressAnyKey", _cultureInfo), GUI.PlaceInCenter(_resManager.GetString("Intro_PressAnyKey", _cultureInfo)), 34, 5, ConsoleColor.Blue, ConsoleColor.White);
         }
 
@@ -147,8 +146,8 @@ namespace ConsoleGameRpg
             graphicInterface.WriteText(new string('╦', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 19, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
 
-            graphicInterface.WriteText(new string('=', 31), 69, 23, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
-            graphicInterface.WriteText(new string('=', 31), 69, 35, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+            graphicInterface.WriteText("╬" + new string('=', 29) + "╬", 69, 23, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+            graphicInterface.WriteText("╬" + new string('=', 29) + "╬", 69, 35, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
             for (int i = 0; i < 11; i++)
             {
                 graphicInterface.WriteText(new string('I', 1), 69, 24 + i, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
@@ -171,9 +170,10 @@ namespace ConsoleGameRpg
             graphicInterface.WriteText(new string('╦', 170), 0, 39, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 40, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
 
-            graphicInterface.WriteElement("resources/graphicElements/mainMenuTip.txt", 6, 24, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
-            //Console.Clear();
-            graphicInterface.WriteText(_resManager.GetString("MainMenu_Tip", _cultureInfo), 21, 24, 1, ConsoleColor.DarkGreen, ConsoleColor.White);
+            graphicInterface.WriteElement("resources/graphicElements/mainMenuTip.txt", 
+                                          6, 24, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
+            graphicInterface.WriteText(_resManager.GetString("MainMenu_Tip", _cultureInfo), 
+                                          21, 24, 1, ConsoleColor.DarkGreen, ConsoleColor.White);
 
             graphicInterface.WriteText(_resManager.GetString("MainMenu_Credits", _cultureInfo), 
                                         GUI.PlaceInCenter(_resManager.GetString("MainMenu_Credits", _cultureInfo)), 
