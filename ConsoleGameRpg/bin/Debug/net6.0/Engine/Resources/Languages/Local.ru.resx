@@ -124,16 +124,16 @@
     <value> Это консольное приложение создано Sergey V. как пет-проект. Только для ознакомительных целей. </value>
   </data>
   <data name="MainMenu_Exit" xml:space="preserve">
-    <value>   Выйти   </value>
+    <value> ∙ Выйти · </value>
   </data>
   <data name="MainMenu_Settings" xml:space="preserve">
-    <value>   Настройки   </value>
+    <value> ∙ Настройки · </value>
   </data>
   <data name="MainMenu_StartGame" xml:space="preserve">
-    <value>   Начать игру   </value>
+    <value> ∙ Начать игру · </value>
   </data>
   <data name="MainMenu_Tip" xml:space="preserve">
-    <value>Подсказка: чтобы управлять меню используйте клавиши W↑ и S↓</value>
+    <value>Подсказка: чтобы управлять меню  используйте клавиши W↑ и S↓</value>
     <comment>Чтобы перенести строку, используйте ALT+255</comment>
   </data>
 </root>

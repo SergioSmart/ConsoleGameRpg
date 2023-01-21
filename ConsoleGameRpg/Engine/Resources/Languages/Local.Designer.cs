@@ -97,7 +97,7 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на    Start game def .
+        ///   Ищет локализованную строку, похожую на  ∙ Start game ∙ def .
         /// </summary>
         internal static string MainMenu_StartGame {
             get {

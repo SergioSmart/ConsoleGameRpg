@@ -130,7 +130,7 @@
     <value>   Settings  def </value>
   </data>
   <data name="MainMenu_StartGame" xml:space="preserve">
-    <value>   Start game def </value>
+    <value> ∙ Start game ∙ def </value>
   </data>
   <data name="MainMenu_Tip" xml:space="preserve">
     <value>Hint: in order to control menu  use buttons W↑ and S↓</value>

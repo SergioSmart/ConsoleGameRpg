@@ -124,13 +124,13 @@
     <value> This console application created as a pet-project by Sergey V. For informational purposes only. </value>
   </data>
   <data name="MainMenu_Exit" xml:space="preserve">
-    <value>   Exit   </value>
+    <value> ∙ Exit · </value>
   </data>
   <data name="MainMenu_Settings" xml:space="preserve">
-    <value>   Settings   </value>
+    <value> ∙ Settings · </value>
   </data>
   <data name="MainMenu_StartGame" xml:space="preserve">
-    <value>   Start game   </value>
+    <value>∙  Start game · </value>
   </data>
   <data name="MainMenu_Tip" xml:space="preserve">
     <value>Hint: in order to control menu  use buttons W↑ and S↓</value>

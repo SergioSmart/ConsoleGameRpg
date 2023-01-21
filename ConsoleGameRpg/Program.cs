@@ -139,7 +139,9 @@ namespace ConsoleGameRpg
         private static void DrawMainMenu(GUI graphicInterface)
         {
             Console.BackgroundColor = ConsoleColor.DarkRed;
-            Console.ForegroundColor = ConsoleColor.White;            
+            Console.ForegroundColor = ConsoleColor.White;
+
+            string startGame = _resManager.GetString("MainMenu_StartGame", _cultureInfo).Replace('∙', '►').Replace('·', '◄');//.Insert(1, "►").Insert(16, "◄");
 
             Console.Clear();
             graphicInterface.WriteElement("resources/graphicElements/mainMenu.txt", 18, 1, 0, ConsoleColor.DarkRed, ConsoleColor.White);
@@ -157,8 +159,8 @@ namespace ConsoleGameRpg
                 graphicInterface.WriteText(new string('I', 1), 99, 24 + i, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
             }
 
-            graphicInterface.WriteText(_resManager.GetString("MainMenu_StartGame", _cultureInfo), 
-                                        GUI.PlaceInCenter(_resManager.GetString("MainMenu_StartGame", _cultureInfo)), 
+            graphicInterface.WriteText(startGame, 
+                                        GUI.PlaceInCenter(startGame), 
                                         26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
             graphicInterface.WriteText(_resManager.GetString("MainMenu_Settings", _cultureInfo), 
                                         GUI.PlaceInCenter(_resManager.GetString("MainMenu_Settings", _cultureInfo)), 
@@ -172,8 +174,7 @@ namespace ConsoleGameRpg
 
             graphicInterface.WriteElement("resources/graphicElements/mainMenuTip.txt", 
                                           6, 24, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
-            graphicInterface.WriteText(_resManager.GetString("MainMenu_Tip", _cultureInfo), 
-                                          21, 24, 1, ConsoleColor.DarkGreen, ConsoleColor.White);
+            graphicInterface.WriteText(_resManager.GetString("MainMenu_Tip", _cultureInfo), 21, 24, 1, ConsoleColor.DarkGreen, ConsoleColor.White);
 
             graphicInterface.WriteText(_resManager.GetString("MainMenu_Credits", _cultureInfo), 
                                         GUI.PlaceInCenter(_resManager.GetString("MainMenu_Credits", _cultureInfo)), 
