@@ -5,6 +5,11 @@
         private string _pathToFile;
         private char[,] _graphicElement;
 
+        public GraphicElement()
+        {
+
+        }
+
         public GraphicElement(string pathToFile)
         {
             _pathToFile = pathToFile;
@@ -18,7 +23,7 @@
 
             for (int x = 0; x < _graphicElement.GetLength(0); x++)
                 for (int y = 0; y < _graphicElement.GetLength(1); y++)
-                    _graphicElement[x, y] = file[y][x];            
+                    _graphicElement[x, y] = file[y][x];          
         }
 
         public void WriteElement(int cursorPosLeft, int cursorPosTop, int delay, ConsoleColor backgroundColor, ConsoleColor foregroundColor) 
@@ -44,8 +49,7 @@
             Console.ForegroundColor = foregroundColor;
             Console.SetCursorPosition(cursorPosLeft, cursorPosTop);
             for (int i = 0; i < text.Length; i++)
-            {
-                
+            {            
                 Console.Write(text[i]);
                 Thread.Sleep(delay);
             }
