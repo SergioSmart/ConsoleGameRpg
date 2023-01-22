@@ -126,14 +126,19 @@
   <data name="MainMenu_Exit" xml:space="preserve">
     <value> ∙ Выйти · </value>
   </data>
+  <data name="MainMenu_ExitQuestion" xml:space="preserve">
+    <value>Вы действительно хотите выйти? Enter - да | Escape - нет</value>
+  </data>
   <data name="MainMenu_Settings" xml:space="preserve">
     <value> ∙ Настройки · </value>
   </data>
   <data name="MainMenu_StartGame" xml:space="preserve">
-    <value> ∙ Начать игру · </value>
+    <value> ► Начать игру ◄ </value>
   </data>
-  <data name="MainMenu_Tip" xml:space="preserve">
-    <value>Подсказка: чтобы управлять меню  используйте клавиши W↑ и S↓</value>
-    <comment>Чтобы перенести строку, используйте ALT+255</comment>
+  <data name="MainMenu_Tip1" xml:space="preserve">
+    <value>Подсказка: чтобы управлять меню используйте клавиши W↑ и S↓</value>
+  </data>
+  <data name="MainMenu_Tip2" xml:space="preserve">
+    <value>Чтобы выбрать нажмите Enter</value>
   </data>
 </root>

@@ -86,24 +86,42 @@
         //}
 
         public void WriteText(string text, int cursorPosLeft, 
-                              int cursorPosTop, int delay, 
+                              int cursorPosTop, int delay,  
                               ConsoleColor backgroundColor, 
-                              ConsoleColor foregroundColor)
+                              ConsoleColor foregroundColor, 
+                              int lengthOfRow = int.MaxValue)
         {
-            int amountOfEnter = 1;
+            int amountOfEnters = 1;
             Console.BackgroundColor = backgroundColor;
             Console.ForegroundColor = foregroundColor;
             Console.SetCursorPosition(cursorPosLeft, cursorPosTop);
+
+            if(text.Length > lengthOfRow)
+            {
+                text = text.Insert(lengthOfRow, "\0");
+            }
+
             for (int i = 0; i < text.Length; i++)
             {
-                if (text[i] == ' ') //ALT+255 non-breaking space
+                if (text[i] == '\0')
                 {
-                    Console.SetCursorPosition(cursorPosLeft, cursorPosTop + amountOfEnter);
-                    amountOfEnter++;
+                    Console.SetCursorPosition(cursorPosLeft, cursorPosTop + amountOfEnters);
+                    amountOfEnters++;
                 }
                 Console.Write(text[i]);
                 Thread.Sleep(delay);
             }
+
+            //for (int i = 0; i < text.Length; i++)
+            //{
+            //    if (text[i] == ' ') //ALT+255 non-breaking space
+            //    {
+            //        Console.SetCursorPosition(cursorPosLeft, cursorPosTop + amountOfEnter);
+            //        amountOfEnter++;
+            //    }
+            //    Console.Write(text[i]);
+            //    Thread.Sleep(delay);
+            //}
         }
 
         private static int GetMaxLengthOfLine(string[] lines) 

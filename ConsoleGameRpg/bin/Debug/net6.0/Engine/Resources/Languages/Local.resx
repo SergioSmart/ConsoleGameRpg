@@ -126,14 +126,20 @@
   <data name="MainMenu_Exit" xml:space="preserve">
     <value>   Exit def   </value>
   </data>
+  <data name="MainMenu_ExitQuestion" xml:space="preserve">
+    <value>Do you want to exit? Enter - yes | Esc - no</value>
+  </data>
   <data name="MainMenu_Settings" xml:space="preserve">
     <value>   Settings  def </value>
   </data>
   <data name="MainMenu_StartGame" xml:space="preserve">
     <value> ∙ Start game ∙ def </value>
   </data>
-  <data name="MainMenu_Tip" xml:space="preserve">
+  <data name="MainMenu_Tip1" xml:space="preserve">
     <value>Hint: in order to control menu  use buttons W↑ and S↓</value>
     <comment>To use '\n' print ALT+255</comment>
+  </data>
+  <data name="MainMenu_Tip2" xml:space="preserve">
+    <value>To choose press Enter</value>
   </data>
 </root>

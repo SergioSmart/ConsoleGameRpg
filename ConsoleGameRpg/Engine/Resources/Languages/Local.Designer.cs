@@ -88,6 +88,15 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Do you want to exit? Enter - yes | Esc - no.
+        /// </summary>
+        internal static string MainMenu_ExitQuestion {
+            get {
+                return ResourceManager.GetString("MainMenu_ExitQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на    Settings  def .
         /// </summary>
         internal static string MainMenu_Settings {
@@ -108,9 +117,18 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Hint: in order to control menu  use buttons W↑ and S↓.
         /// </summary>
-        internal static string MainMenu_Tip {
+        internal static string MainMenu_Tip1 {
             get {
-                return ResourceManager.GetString("MainMenu_Tip", resourceCulture);
+                return ResourceManager.GetString("MainMenu_Tip1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на To choose press Enter.
+        /// </summary>
+        internal static string MainMenu_Tip2 {
+            get {
+                return ResourceManager.GetString("MainMenu_Tip2", resourceCulture);
             }
         }
     }
