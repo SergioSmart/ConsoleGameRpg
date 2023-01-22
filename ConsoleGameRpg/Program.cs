@@ -10,21 +10,24 @@ namespace ConsoleGameRpg
         private static ResourceManager _resManager = new ResourceManager("ConsoleGameRpg.Engine.Resources.Languages.Local", typeof(Program).Assembly);
         private static CultureInfo _cultureInfo = CultureInfo.CurrentCulture;
 
-        private static GUI intro = new GUI();
-        private static GUI mainMenu = new GUI();
+        private static GUI _intro = new GUI();
+        private static GUI _mainMenu = new GUI();
 
         private static sbyte _selectorMenu = 0;
 
+        private static string _startGameStr = _resManager.GetString("MainMenu_StartGame", _cultureInfo);
+        private static string _settingsStr = _resManager.GetString("MainMenu_Settings", _cultureInfo);
+        private static string _exitStr = _resManager.GetString("MainMenu_Exit", _cultureInfo);
         //private static Level level1 = new Level("test2d.txt", 62, 6, ConsoleColor.Black, ConsoleColor.White);
 
         public static void Main()
         {
             InitializeConsole(Level.ScreenWidth, Level.ScreenHeight, false);
 
-            DrawIntro(intro);
+            DrawIntro(_intro);
             Console.ReadKey();
 
-            DrawMainMenu(mainMenu);
+            DrawMainMenu(_mainMenu);
 
 
             //DrawLevel(level1);
@@ -140,10 +143,6 @@ namespace ConsoleGameRpg
             Console.BackgroundColor = ConsoleColor.DarkRed;
             Console.ForegroundColor = ConsoleColor.White;
 
-            string startGameStr = _resManager.GetString("MainMenu_StartGame", _cultureInfo);
-            string settingsStr = _resManager.GetString("MainMenu_Settings", _cultureInfo);
-            string exitStr = _resManager.GetString("MainMenu_Exit", _cultureInfo);
-
             Console.Clear();
             graphicInterface.WriteElement("resources/graphicElements/mainMenu.txt", 18, 1, 0, ConsoleColor.DarkRed, ConsoleColor.White);
             graphicInterface.WriteText(new string('╦', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
@@ -160,13 +159,13 @@ namespace ConsoleGameRpg
             }
 
 
-
-            graphicInterface.WriteText(startGameStr/*_resManager.GetString("MainMenu_StartGame", _cultureInfo).Replace('∙', '►').Replace('·', '◄')*/, GUI.PlaceInCenter(startGameStr),
-                                        26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
-            graphicInterface.WriteText(settingsStr, GUI.PlaceInCenter(settingsStr),
-                                        29, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
-            graphicInterface.WriteText(exitStr, GUI.PlaceInCenter(exitStr),
-                                        32, 0, ConsoleColor.Red, ConsoleColor.White);
+            DrawSelectedOption(graphicInterface);
+            //graphicInterface.WriteText(_startGameStr/*_resManager.GetString("MainMenu_StartGame", _cultureInfo).Replace('∙', '►').Replace('·', '◄')*/, GUI.PlaceInCenter(_startGameStr),
+            //                            26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
+            //graphicInterface.WriteText(_settingsStr, GUI.PlaceInCenter(_settingsStr),
+            //                            29, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
+            //graphicInterface.WriteText(_exitStr, GUI.PlaceInCenter(_exitStr),
+            //                            32, 0, ConsoleColor.Red, ConsoleColor.White);
 
 
 
@@ -180,81 +179,64 @@ namespace ConsoleGameRpg
                                         GUI.PlaceInCenter(_resManager.GetString("MainMenu_Credits", _cultureInfo)),
                                         45, 1, ConsoleColor.DarkRed, ConsoleColor.Yellow);
 
+            ManageSelector(graphicInterface);
+
 
             //graphicInterface.WriteText(_resManager.GetString("MainMenu_Exit", _cultureInfo).Replace('∙', '►').Replace('·', '◄'), GUI.PlaceInCenter(_resManager.GetString("MainMenu_Exit", _cultureInfo)),
             //                            32, 0, ConsoleColor.Red, ConsoleColor.White);
             //Console.ReadKey();
+        }
 
+        private static void ManageSelector(GUI graphicInterface)
+        {
             while (true)
             {
-                ConsoleKey consoleKey;
                 if (_selectorMenu == 0)
                 {
-                    startGameStr = startGameStr.Replace('∙', '►').Replace('·', '◄');
-                    settingsStr = settingsStr.Replace('►', '∙').Replace('◄', '·');
-                    exitStr = exitStr.Replace('►', '∙').Replace('◄', '·');
-
-                    graphicInterface.WriteText(startGameStr, GUI.PlaceInCenter(startGameStr),
-                                        26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
-                    graphicInterface.WriteText(settingsStr, GUI.PlaceInCenter(settingsStr),
-                                                29, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
-                    graphicInterface.WriteText(exitStr, GUI.PlaceInCenter(exitStr),
-                                                32, 0, ConsoleColor.Red, ConsoleColor.White);
+                    _startGameStr = _startGameStr.Replace('∙', '►').Replace('·', '◄');
+                    _settingsStr = _settingsStr.Replace('►', '∙').Replace('◄', '·');
+                    _exitStr = _exitStr.Replace('►', '∙').Replace('◄', '·');
+                    
+                    DrawSelectedOption(graphicInterface);
                 }
                 else if (_selectorMenu == 1)
                 {
-                    startGameStr = startGameStr.Replace('►', '∙').Replace('◄', '·');
-                    settingsStr = settingsStr.Replace('∙', '►').Replace('·', '◄');
-                    exitStr = exitStr.Replace('►', '∙').Replace('◄', '·');
-                    graphicInterface.WriteText(startGameStr, GUI.PlaceInCenter(startGameStr),
-                                        26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
-                    graphicInterface.WriteText(settingsStr, GUI.PlaceInCenter(settingsStr),
-                                                29, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
-                    graphicInterface.WriteText(exitStr, GUI.PlaceInCenter(exitStr),
-                                                32, 0, ConsoleColor.Red, ConsoleColor.White);
+                    _startGameStr = _startGameStr.Replace('►', '∙').Replace('◄', '·');
+                    _settingsStr = _settingsStr.Replace('∙', '►').Replace('·', '◄');
+                    _exitStr = _exitStr.Replace('►', '∙').Replace('◄', '·');
+                    
+                    DrawSelectedOption(graphicInterface);
                 }
                 else if (_selectorMenu == 2)
                 {
-                    startGameStr = startGameStr.Replace('►', '∙').Replace('◄', '·');
-                    settingsStr = settingsStr.Replace('►', '∙').Replace('◄', '·');
-                    exitStr = exitStr.Replace('∙', '►').Replace('·', '◄');
-                    graphicInterface.WriteText(startGameStr, GUI.PlaceInCenter(startGameStr),
-                                        26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
-                    graphicInterface.WriteText(settingsStr, GUI.PlaceInCenter(settingsStr),
-                                                29, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
-                    graphicInterface.WriteText(exitStr, GUI.PlaceInCenter(exitStr),
-                                                32, 0, ConsoleColor.Red, ConsoleColor.White);
+                    _startGameStr = _startGameStr.Replace('►', '∙').Replace('◄', '·');
+                    _settingsStr = _settingsStr.Replace('►', '∙').Replace('◄', '·');
+                    _exitStr = _exitStr.Replace('∙', '►').Replace('·', '◄');
+                    
+                    DrawSelectedOption(graphicInterface);
                 }
                 else if (_selectorMenu > 2)
                 {
                     _selectorMenu = 0;
-                    startGameStr = startGameStr.Replace('∙', '►').Replace('·', '◄');
-                    settingsStr = settingsStr.Replace('►', '∙').Replace('◄', '·');
-                    exitStr = exitStr.Replace('►', '∙').Replace('◄', '·');
+                    
+                    _startGameStr = _startGameStr.Replace('∙', '►').Replace('·', '◄');
+                    _settingsStr = _settingsStr.Replace('►', '∙').Replace('◄', '·');
+                    _exitStr = _exitStr.Replace('►', '∙').Replace('◄', '·');
 
-                    graphicInterface.WriteText(startGameStr, GUI.PlaceInCenter(startGameStr),
-                                        26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
-                    graphicInterface.WriteText(settingsStr, GUI.PlaceInCenter(settingsStr),
-                                                29, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
-                    graphicInterface.WriteText(exitStr, GUI.PlaceInCenter(exitStr),
-                                                32, 0, ConsoleColor.Red, ConsoleColor.White);
+                    DrawSelectedOption(graphicInterface);
                 }
                 else if (_selectorMenu < 0)
                 {
                     _selectorMenu = 2;
-                    startGameStr = startGameStr.Replace('►', '∙').Replace('◄', '·');
-                    settingsStr = settingsStr.Replace('►', '∙').Replace('◄', '·');
-                    exitStr = exitStr.Replace('∙', '►').Replace('·', '◄');
-                    graphicInterface.WriteText(startGameStr, GUI.PlaceInCenter(startGameStr),
-                                        26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
-                    graphicInterface.WriteText(settingsStr, GUI.PlaceInCenter(settingsStr),
-                                                29, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
-                    graphicInterface.WriteText(exitStr, GUI.PlaceInCenter(exitStr),
-                                                32, 0, ConsoleColor.Red, ConsoleColor.White);
+                    
+                    _startGameStr = _startGameStr.Replace('►', '∙').Replace('◄', '·');
+                    _settingsStr = _settingsStr.Replace('►', '∙').Replace('◄', '·');
+                    _exitStr = _exitStr.Replace('∙', '►').Replace('·', '◄');
+                    
+                    DrawSelectedOption(graphicInterface);
                 }
 
-                consoleKey = Console.ReadKey(true).Key;
-
+                ConsoleKey consoleKey = Console.ReadKey(true).Key;
                 switch (consoleKey)
                 {
                     case ConsoleKey.W:
@@ -268,8 +250,17 @@ namespace ConsoleGameRpg
                             break;
                         }
                 }
-
             }
+        }
+
+        private static void DrawSelectedOption(GUI graphicInterface)
+        {
+            graphicInterface.WriteText(_startGameStr, GUI.PlaceInCenter(_startGameStr),
+                                       26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
+            graphicInterface.WriteText(_settingsStr, GUI.PlaceInCenter(_settingsStr),
+                                        29, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
+            graphicInterface.WriteText(_exitStr, GUI.PlaceInCenter(_exitStr),
+                                        32, 0, ConsoleColor.Red, ConsoleColor.White);
         }
 
         private static void DrawLevel(Level level)
