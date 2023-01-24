@@ -2,6 +2,8 @@
 {
     public class GameMusic
     {
+        private static int _tempo = (int)Tempo.Allegro;
+
         public static void PlayTrack1()
         {
             int frequency = 100;
@@ -65,8 +67,9 @@
 
         public static void PlayButtonSelected()
         {
-            Console.Beep(550, 100);
-            Console.Beep(650, 100);
+            //Console.Beep(550, 100);
+            //Console.Beep(650, 100);
+            
         }
 
         public static void PlayButtonPressed()
