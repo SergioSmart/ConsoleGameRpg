@@ -2,55 +2,76 @@
 {
     public class GameMusic
     {
-        private static int _frequency = 100;
-        private static int _duration = 300;
-        private static byte _length = 0;
-        private static byte _step = 0;
-        private static byte _cycle = 0;
-
-        public static void PlayTrack1(bool isActive)
+        public static void PlayTrack1()
         {
-            while (isActive)
+            int frequency = 100;
+            int duration = 300;
+            byte length = 0;
+            byte step = 0;
+            byte cycle = 0;
+
+            while (true)
             {
-                if (_cycle >= 0 && _cycle < 4)
+                if (cycle >= 0 && cycle < 4)
                 {
-                    while (_length < 4)
+                    while (length < 4)
                     {
-                        Console.Beep(_frequency + _step, _duration);
-                        _step += 17;
-                        _length++;
+                        Console.Beep(frequency + step, duration);
+                        step += 17;
+                        length++;
                     }
-                    while (_length > 0)
+                    while (length > 0)
                     {
-                        Console.Beep(_frequency + _step, _duration);
-                        _step -= 17;
-                        _length--;
+                        Console.Beep(frequency + step, duration);
+                        step -= 17;
+                        length--;
                     }
-                    _cycle++;
+                    cycle++;
                 }
 
-                if (_cycle >= 4 && _cycle < 6)
+                if (cycle >= 4 && cycle < 6)
                 {
-                    while (_length < 4)
+                    while (length < 4)
                     {
-                        Console.Beep(_frequency + 90 + _step, _duration);
-                        _step += 17;
-                        _length++;
+                        Console.Beep(frequency + 90 + step, duration);
+                        step += 17;
+                        length++;
                     }
-                    while (_length > 0)
+                    while (length > 0)
                     {
-                        Console.Beep(_frequency + 90 + _step, _duration);
-                        _step -= 17;
-                        _length--;
+                        Console.Beep(frequency + 90 + step, duration);
+                        step -= 17;
+                        length--;
                     }
-                    _cycle++;
+                    cycle++;
                 }
 
-                if (_cycle >= 6)
+                if (cycle >= 6)
                 {
-                    _cycle = 0;
+                    cycle = 0;
                 }
             }
+        }
+
+        public static void PlayIntro()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                Console.Beep(400 + i * 40, 100);
+            }
+            Console.Beep(480, 100);
+            Console.Beep(620, 500);
+        }
+
+        public static void PlayButtonSelected()
+        {
+            Console.Beep(550, 100);
+            Console.Beep(650, 100);
+        }
+
+        public static void PlayButtonPressed()
+        {
+            Console.Beep(280, 100);
         }
 
         public static void PlayHeartPickedUp()

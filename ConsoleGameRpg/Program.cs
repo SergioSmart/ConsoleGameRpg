@@ -3,13 +3,17 @@ using System.Globalization;
 using System.Resources;
 using ConsoleGameRpg.Engine.Resources.Languages;
 using System;
+using ConsoleGameRpg.Engine.Music;
 
 namespace ConsoleGameRpg
 {
     public class Program
     {
         private static ResourceManager _resManager = new ResourceManager("ConsoleGameRpg.Engine.Resources.Languages.Local", typeof(Program).Assembly);
-        private static CultureInfo _cultureInfo = CultureInfo.CreateSpecificCulture("en");
+        //private static CultureInfo _cultureInfo = CultureInfo.CreateSpecificCulture("en");
+        private static CultureInfo _cultureInfo = CultureInfo.CurrentCulture;
+        //private static ThreadStart drawAnim = new ThreadStart(DrawAnimation);
+        //private static Thread thread = new Thread(drawAnim);
 
         private static GUI _intro = new GUI();
         private static GUI _mainMenu = new GUI();
@@ -28,9 +32,8 @@ namespace ConsoleGameRpg
 
             DrawIntro(_intro);
             Console.ReadKey();
-
+        
             DrawMainMenu(_mainMenu);
-
 
             //DrawLevel(level1);
             /*
@@ -131,22 +134,33 @@ namespace ConsoleGameRpg
         private static void DrawIntro(GUI graphicInterface)
         {
             //_cultureInfo = CultureInfo.CreateSpecificCulture("en");  //Uncomment this to check different localizations
+            Task.Run(() =>
+            {
+                //Syntezator.Ggg();
+            });
 
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Clear();
 
-            graphicInterface.WriteElement("resources/graphicElements/intro.txt", 36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
+            graphicInterface.WriteElement("resources/graphicElements/intro/intro.txt", 36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
             graphicInterface.WriteText(_resManager.GetString("Intro_PressAnyKey", _cultureInfo), GUI.PlaceInCenter(_resManager.GetString("Intro_PressAnyKey", _cultureInfo)), 34, 5, ConsoleColor.Blue, ConsoleColor.White);
         }
 
         private static void DrawMainMenu(GUI graphicInterface)
         {
+            //Task.Run(() =>
+            //{
+            //    GameMusic.PlayTrack1();
+            //});
+
             Console.BackgroundColor = ConsoleColor.DarkRed;
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.Clear();
-            graphicInterface.WriteElement("resources/graphicElements/mainMenu.txt", 18, 1, 0, ConsoleColor.DarkRed, ConsoleColor.White);
+            graphicInterface.WriteText(new string('▄', 170), 0, 0, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+            graphicInterface.WriteElement("resources/graphicElements/mainMenu/mainMenuHeader2.txt", 0, 1, 0, ConsoleColor.Cyan, ConsoleColor.DarkMagenta);
+            graphicInterface.WriteText(new string('▀', 170), 0, 17, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
             graphicInterface.WriteText(new string('╦', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 19, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText("╬" + new string('=', 30) + "╬", 69, 23, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
@@ -171,7 +185,7 @@ namespace ConsoleGameRpg
 
             graphicInterface.WriteText(new string('╦', 170), 0, 39, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 40, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
-            graphicInterface.WriteElement("resources/graphicElements/mainMenuTip.txt",
+            graphicInterface.WriteElement("resources/graphicElements/mainMenu/mainMenuTip.txt",
                                           6, 24, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
             graphicInterface.WriteText(_resManager.GetString("MainMenu_Tip1", _cultureInfo),
                                        21, 24, 1, ConsoleColor.DarkGreen, ConsoleColor.White, 32);
@@ -186,7 +200,7 @@ namespace ConsoleGameRpg
             //graphicInterface.WriteText(_resManager.GetString("MainMenu_Exit", _cultureInfo).Replace('∙', '►').Replace('·', '◄'), GUI.PlaceInCenter(_resManager.GetString("MainMenu_Exit", _cultureInfo)),
             //                            32, 0, ConsoleColor.Red, ConsoleColor.White);
             //Console.ReadKey();
-        }
+        }       
 
         private static void ManageSelector(GUI graphicInterface)
         {
@@ -243,25 +257,30 @@ namespace ConsoleGameRpg
                     case ConsoleKey.W:
                         {
                             _selectorMenu -= 1;
+                            GameMusic.PlayButtonSelected();
                             break;
                         }
                     case ConsoleKey.S:
                         {
                             _selectorMenu += 1;
+                            GameMusic.PlayButtonSelected();
                             break;
                         }
                     case ConsoleKey.Enter:
                         {
                             if (_selectorMenu == 0)
                             {
+                                GameMusic.PlayButtonPressed();
                                 continue;
                             }
                             else if (_selectorMenu == 1)
                             {
+                                GameMusic.PlayButtonPressed();
                                 continue;
                             }
                             else if (_selectorMenu == 2)
                             {
+                                GameMusic.PlayButtonPressed();
                                 DrawExitMenu(graphicInterface);                             
                             }
                             break;
@@ -272,6 +291,7 @@ namespace ConsoleGameRpg
 
         private static void DrawExitMenu(GUI graphicInterface)
         {
+            //thread.Suspend();
             Console.Clear();
             graphicInterface.WriteText(new string('╦', 170), 0, 4, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 5, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
@@ -301,27 +321,33 @@ namespace ConsoleGameRpg
             {
                 case ConsoleKey.Escape:
                     {
+                        GameMusic.PlayButtonPressed();
                         DrawMainMenu(_mainMenu);
                         break;
                     }
                 case ConsoleKey.Enter:
                     {
+                        GameMusic.PlayButtonPressed();
                         Console.SetCursorPosition(0, 43);
                         Environment.Exit(0);
                         break;
                     }
                 default:
+                    GameMusic.PlayButtonPressed();
                     DrawExitMenu(graphicInterface); 
                     break;
             }
         }
 
         private static void DrawSelectedOption(GUI graphicInterface)
-        {         
+        {
+            Console.SetCursorPosition(26, 0);
             graphicInterface.WriteText(_startGameStr, GUI.PlaceInCenter(_startGameStr),
                                        26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
+            Console.SetCursorPosition(29, 0);
             graphicInterface.WriteText(_settingsStr, GUI.PlaceInCenter(_settingsStr),
                                         29, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
+            Console.SetCursorPosition(32, 0);
             graphicInterface.WriteText(_exitStr, GUI.PlaceInCenter(_exitStr),
                                         32, 0, ConsoleColor.Red, ConsoleColor.White);
         }
@@ -330,8 +356,11 @@ namespace ConsoleGameRpg
         {
             Console.BackgroundColor = ConsoleColor.DarkRed;
             Console.ForegroundColor = ConsoleColor.White;
-
             Console.Clear();
+
+            //graphicInterface.WriteElement()
+
+
         }
 
         private static void DrawLevel(Level level)
