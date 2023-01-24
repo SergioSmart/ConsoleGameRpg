@@ -131,5 +131,32 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
                 return ResourceManager.GetString("MainMenu_Tip2", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на   Language:  .
+        /// </summary>
+        internal static string SettingsMenu_UILang {
+            get {
+                return ResourceManager.GetString("SettingsMenu_UILang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на English.
+        /// </summary>
+        internal static string SettingsMenu_UILang_En {
+            get {
+                return ResourceManager.GetString("SettingsMenu_UILang_En", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Russian.
+        /// </summary>
+        internal static string SettingsMenu_UILang_Ru {
+            get {
+                return ResourceManager.GetString("SettingsMenu_UILang_Ru", resourceCulture);
+            }
+        }
     }
 }

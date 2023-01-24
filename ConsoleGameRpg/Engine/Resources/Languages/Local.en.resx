@@ -124,16 +124,16 @@
     <value> This console application created as a pet-project by Sergey V. For informational purposes only. </value>
   </data>
   <data name="MainMenu_Exit" xml:space="preserve">
-    <value> ∙ Exit · </value>
+    <value>Exit</value>
   </data>
   <data name="MainMenu_ExitQuestion" xml:space="preserve">
     <value>Do you want to exit? Enter - yes | Esc - no</value>
   </data>
   <data name="MainMenu_Settings" xml:space="preserve">
-    <value> ∙ Settings · </value>
+    <value>Settings</value>
   </data>
   <data name="MainMenu_StartGame" xml:space="preserve">
-    <value> ► Start game ◄ </value>
+    <value>Start game</value>
   </data>
   <data name="MainMenu_Tip1" xml:space="preserve">
     <value>Hint: in order to control menu  use buttons W↑ and S↓</value>
@@ -141,5 +141,14 @@
   </data>
   <data name="MainMenu_Tip2" xml:space="preserve">
     <value>To choose press Enter</value>
+  </data>
+  <data name="SettingsMenu_UILang" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="SettingsMenu_UILang_En" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="SettingsMenu_UILang_Ru" xml:space="preserve">
+    <value>Russian</value>
   </data>
 </root>

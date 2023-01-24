@@ -67,21 +67,20 @@
 
         public static void PlayButtonSelected()
         {
-            //Console.Beep(550, 100);
-            //Console.Beep(650, 100);
-            
+            Console.Beep((int)Note.Cs5, (int)Duration.Sixteenth);
+            Console.Beep((int)Note.E5, (int)Duration.Sixteenth);
         }
 
         public static void PlayButtonPressed()
         {
-            Console.Beep(280, 100);
+            Console.Beep((int)Note.Cs4, (int)Duration.Sixteenth);
         }
 
         public static void PlayHeartPickedUp()
         {
             for (int i = 0; i < 12; i++)
             {
-                Console.Beep(300 + i * 900, 40);
+                
             }
         }
     }

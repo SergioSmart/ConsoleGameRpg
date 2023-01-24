@@ -124,21 +124,30 @@
     <value> Это консольное приложение создано Sergey V. как пет-проект. Только для ознакомительных целей. </value>
   </data>
   <data name="MainMenu_Exit" xml:space="preserve">
-    <value> ∙ Выйти · </value>
+    <value>Выйти</value>
   </data>
   <data name="MainMenu_ExitQuestion" xml:space="preserve">
     <value>Вы действительно хотите выйти? Enter - да | Escape - нет</value>
   </data>
   <data name="MainMenu_Settings" xml:space="preserve">
-    <value> ∙ Настройки · </value>
+    <value>Настройки</value>
   </data>
   <data name="MainMenu_StartGame" xml:space="preserve">
-    <value> ► Начать игру ◄ </value>
+    <value>Начать игру</value>
   </data>
   <data name="MainMenu_Tip1" xml:space="preserve">
     <value>Подсказка: чтобы управлять меню используйте клавиши W↑ и S↓</value>
   </data>
   <data name="MainMenu_Tip2" xml:space="preserve">
     <value>Чтобы выбрать нажмите Enter</value>
+  </data>
+  <data name="SettingsMenu_UILang" xml:space="preserve">
+    <value>  Язык интерфейса:  </value>
+  </data>
+  <data name="SettingsMenu_UILang_En" xml:space="preserve">
+    <value>Английский</value>
+  </data>
+  <data name="SettingsMenu_UILang_Ru" xml:space="preserve">
+    <value>Русский</value>
   </data>
 </root>

@@ -137,9 +137,17 @@
   </data>
   <data name="MainMenu_Tip1" xml:space="preserve">
     <value>Hint: in order to control menu  use buttons W↑ and S↓</value>
-    <comment>To use '\n' print ALT+255</comment>
   </data>
   <data name="MainMenu_Tip2" xml:space="preserve">
     <value>To choose press Enter</value>
+  </data>
+  <data name="SettingsMenu_UILang" xml:space="preserve">
+    <value>  Language:  </value>
+  </data>
+  <data name="SettingsMenu_UILang_En" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="SettingsMenu_UILang_Ru" xml:space="preserve">
+    <value>Russian</value>
   </data>
 </root>

@@ -10,8 +10,8 @@ namespace ConsoleGameRpg
     public class Program
     {
         private static ResourceManager _resManager = new ResourceManager("ConsoleGameRpg.Engine.Resources.Languages.Local", typeof(Program).Assembly);
-        //private static CultureInfo _cultureInfo = CultureInfo.CreateSpecificCulture("en");
-        private static CultureInfo _cultureInfo = CultureInfo.CurrentCulture;
+        private static CultureInfo _cultureInfo = CultureInfo.CreateSpecificCulture("en");
+        //private static CultureInfo _cultureInfo = CultureInfo.CurrentCulture;
         //private static ThreadStart drawAnim = new ThreadStart(DrawAnimation);
         //private static Thread thread = new Thread(drawAnim);
 
@@ -22,9 +22,9 @@ namespace ConsoleGameRpg
         
         private static sbyte _selectorMenu = 0;
     
-        private static string _startGameStr = _resManager.GetString("MainMenu_StartGame", _cultureInfo);
-        private static string _settingsStr = _resManager.GetString("MainMenu_Settings", _cultureInfo);
-        private static string _exitStr = _resManager.GetString("MainMenu_Exit", _cultureInfo);
+        private static string _startGameStr = " ► " + _resManager.GetString("MainMenu_StartGame", _cultureInfo) + " ◄ ";
+        private static string _settingsStr = " ∙ " + _resManager.GetString("MainMenu_Settings", _cultureInfo) + " · ";
+        private static string _exitStr = " ∙ " + _resManager.GetString("MainMenu_Exit", _cultureInfo) + " · ";
 
         public static void Main()
         {
@@ -159,7 +159,7 @@ namespace ConsoleGameRpg
 
             Console.Clear();
             graphicInterface.WriteText(new string('▄', 170), 0, 0, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
-            graphicInterface.WriteElement("resources/graphicElements/mainMenu/mainMenuHeader2.txt", 0, 1, 0, ConsoleColor.Cyan, ConsoleColor.DarkMagenta);
+            graphicInterface.WriteElement("resources/graphicElements/mainMenu/mainMenuHeader.txt", 0, 1, 0, ConsoleColor.Cyan, ConsoleColor.DarkMagenta);
             graphicInterface.WriteText(new string('▀', 170), 0, 17, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
             graphicInterface.WriteText(new string('╦', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 19, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
@@ -174,6 +174,9 @@ namespace ConsoleGameRpg
                 graphicInterface.WriteText(new string('I', 1), 100, 24 + i, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
             }
 
+            graphicInterface.WriteText(_resManager.GetString("MainMenu_Credits", _cultureInfo),
+                                        GUI.PlaceInCenter(_resManager.GetString("MainMenu_Credits", _cultureInfo)),
+                                        45, 0, ConsoleColor.DarkRed, ConsoleColor.Yellow);
 
             DrawSelectedOption(graphicInterface);
             //graphicInterface.WriteText(_startGameStr/*_resManager.GetString("MainMenu_StartGame", _cultureInfo).Replace('∙', '►').Replace('·', '◄')*/, GUI.PlaceInCenter(_startGameStr),
@@ -191,9 +194,6 @@ namespace ConsoleGameRpg
                                        21, 24, 1, ConsoleColor.DarkGreen, ConsoleColor.White, 32);
             graphicInterface.WriteText(_resManager.GetString("MainMenu_Tip2", _cultureInfo),
                                         21, 28, 1, ConsoleColor.DarkGreen, ConsoleColor.White);
-            graphicInterface.WriteText(_resManager.GetString("MainMenu_Credits", _cultureInfo),
-                                        GUI.PlaceInCenter(_resManager.GetString("MainMenu_Credits", _cultureInfo)),
-                                        45, 1, ConsoleColor.DarkRed, ConsoleColor.Yellow);
 
             ManageSelector(graphicInterface);
 
@@ -276,7 +276,7 @@ namespace ConsoleGameRpg
                             else if (_selectorMenu == 1)
                             {
                                 GameMusic.PlayButtonPressed();
-                                continue;
+                                DrawSettingsMenu(graphicInterface);
                             }
                             else if (_selectorMenu == 2)
                             {
@@ -291,7 +291,6 @@ namespace ConsoleGameRpg
 
         private static void DrawExitMenu(GUI graphicInterface)
         {
-            //thread.Suspend();
             Console.Clear();
             graphicInterface.WriteText(new string('╦', 170), 0, 4, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 5, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
@@ -354,12 +353,26 @@ namespace ConsoleGameRpg
 
         private static void DrawSettingsMenu(GUI graphicInterface)
         {
-            Console.BackgroundColor = ConsoleColor.DarkRed;
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();
 
-            //graphicInterface.WriteElement()
+            graphicInterface.WriteText(new string('▄', 170), 0, 0, 0, ConsoleColor.Magenta, ConsoleColor.DarkBlue);
+            graphicInterface.WriteElement("resources/graphicElements/settingsMenu/settingsHeaderEng.txt", 0, 1, 0, ConsoleColor.Cyan, ConsoleColor.Magenta);
+            graphicInterface.WriteText(new string('▀', 170), 0, 16, 0, ConsoleColor.Magenta, ConsoleColor.DarkBlue);
+            graphicInterface.WriteText(new string('╦', 170), 0, 17, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
+            graphicInterface.WriteText(new string('╩', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
 
+            graphicInterface.WriteText("╬" + new string('=', 30) + "╬", 69, 23, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+            graphicInterface.WriteText("╬" + new string('=', 30) + "╬", 69, 35, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+            for (int i = 0; i < 11; i++)
+            {
+                graphicInterface.WriteText(new string('I', 1), 69, 24 + i, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+            }
+            for (int i = 0; i < 11; i++)
+            {
+                graphicInterface.WriteText(new string('I', 1), 100, 24 + i, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+            }
 
         }
 

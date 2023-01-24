@@ -29,6 +29,10 @@
         /// <summary>
         /// 1/16
         /// </summary>
-        Sixteenth = 41
+        Sixteenth = 41,
+        /// <summary>
+        /// 1/32
+        /// </summary>
+        ThirtySecond = 14 
     }
 }
