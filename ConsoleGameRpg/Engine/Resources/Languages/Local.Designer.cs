@@ -133,7 +133,34 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на   Language:  .
+        ///   Ищет локализованную строку, похожую на Sounds.
+        /// </summary>
+        internal static string SettingsMenu_Sounds {
+            get {
+                return ResourceManager.GetString("SettingsMenu_Sounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Disabled.
+        /// </summary>
+        internal static string SettingsMenu_Sounds_Off {
+            get {
+                return ResourceManager.GetString("SettingsMenu_Sounds_Off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Enabled.
+        /// </summary>
+        internal static string SettingsMenu_Sounds_On {
+            get {
+                return ResourceManager.GetString("SettingsMenu_Sounds_On", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Language interface.
         /// </summary>
         internal static string SettingsMenu_UILang {
             get {

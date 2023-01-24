@@ -142,7 +142,7 @@
     <value>Чтобы выбрать нажмите Enter</value>
   </data>
   <data name="SettingsMenu_UILang" xml:space="preserve">
-    <value>  Язык интерфейса:  </value>
+    <value>Язык интерфейса</value>
   </data>
   <data name="SettingsMenu_UILang_En" xml:space="preserve">
     <value>Английский</value>

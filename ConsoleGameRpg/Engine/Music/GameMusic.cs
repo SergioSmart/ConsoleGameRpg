@@ -65,15 +65,19 @@
             Console.Beep(620, 500);
         }
 
-        public static void PlayButtonSelected()
+        public static void PlayButtonSelected(bool isEnabled)
         {
-            Console.Beep((int)Note.Cs5, (int)Duration.Sixteenth);
-            Console.Beep((int)Note.E5, (int)Duration.Sixteenth);
+            if (isEnabled)
+            {
+                Console.Beep((int)Note.Cs5, (int)Duration.Sixteenth);
+                Console.Beep((int)Note.E5, (int)Duration.Sixteenth);
+            }         
         }
 
-        public static void PlayButtonPressed()
+        public static void PlayButtonPressed(bool isEnabled)
         {
-            Console.Beep((int)Note.Cs4, (int)Duration.Sixteenth);
+            if(isEnabled) 
+                Console.Beep((int)Note.Cs4, (int)Duration.Sixteenth);
         }
 
         public static void PlayHeartPickedUp()

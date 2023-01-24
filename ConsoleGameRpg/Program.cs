@@ -12,23 +12,30 @@ namespace ConsoleGameRpg
         private static ResourceManager _resManager = new ResourceManager("ConsoleGameRpg.Engine.Resources.Languages.Local", typeof(Program).Assembly);
         private static CultureInfo _cultureInfo = CultureInfo.CreateSpecificCulture("en");
         //private static CultureInfo _cultureInfo = CultureInfo.CurrentCulture;
-        //private static ThreadStart drawAnim = new ThreadStart(DrawAnimation);
-        //private static Thread thread = new Thread(drawAnim);
+
 
         private static GUI _intro = new GUI();
         private static GUI _mainMenu = new GUI();
 
         private static Level level1 = new Level("test2d.txt", 62, 6, ConsoleColor.Black, ConsoleColor.White);
         
-        private static sbyte _selectorMenu = 0;
-    
-        private static string _startGameStr = " ► " + _resManager.GetString("MainMenu_StartGame", _cultureInfo) + " ◄ ";
-        private static string _settingsStr = " ∙ " + _resManager.GetString("MainMenu_Settings", _cultureInfo) + " · ";
-        private static string _exitStr = " ∙ " + _resManager.GetString("MainMenu_Exit", _cultureInfo) + " · ";
+        private static sbyte _selectorMainMenu = 0;
+        private static sbyte _selectorSettingsMenu = 0;
+        private static bool _isMusicEnabled = true;
+
+        private static string _startGameStr;//" ► " + _resManager.GetString("MainMenu_StartGame", _cultureInfo) + " ◄ ";
+        private static string _settingsStr;//" ∙ " + _resManager.GetString("MainMenu_Settings", _cultureInfo) + " · ";
+        private static string _exitStr;//" ∙ " + _resManager.GetString("MainMenu_Exit", _cultureInfo) + " · ";
+
+        private static string _langRusStr;//" ∙ " + _resManager.GetString("SettingsMenu_UILang_Ru", _cultureInfo) + " · ";
+        private static string _langEngStr;//" ∙ " + _resManager.GetString("SettingsMenu_UILang_En", _cultureInfo) + " · ";
+        private static string _enabledSoundsStr;//" ∙ " + _resManager.GetString("SettingsMenu_UILang_En", _cultureInfo) + " · ";
+        private static string _disabledSoundsStr;//" ∙ " + _resManager.GetString("SettingsMenu_UILang_En", _cultureInfo) + " · ";
 
         public static void Main()
         {
             InitializeConsole(Level.ScreenWidth, Level.ScreenHeight, false);
+            InitializeLocalization();
 
             DrawIntro(_intro);
             Console.ReadKey();
@@ -131,13 +138,18 @@ namespace ConsoleGameRpg
             Console.CursorVisible = cursorVisible;
         }
 
+        private static void InitializeLocalization()
+        {
+             _startGameStr = " ► " + _resManager.GetString("MainMenu_StartGame", _cultureInfo) + " ◄ ";
+             _settingsStr = " ∙ " + _resManager.GetString("MainMenu_Settings", _cultureInfo) + " · ";
+             _exitStr = " ∙ " + _resManager.GetString("MainMenu_Exit", _cultureInfo) + " · ";
+            
+             _langRusStr = " ∙ " + _resManager.GetString("SettingsMenu_UILang_Ru", _cultureInfo) + " · ";
+             _langEngStr = " ∙ " + _resManager.GetString("SettingsMenu_UILang_En", _cultureInfo) + " · ";
+        }
+
         private static void DrawIntro(GUI graphicInterface)
         {
-            //_cultureInfo = CultureInfo.CreateSpecificCulture("en");  //Uncomment this to check different localizations
-            Task.Run(() =>
-            {
-                //Syntezator.Ggg();
-            });
 
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -149,10 +161,6 @@ namespace ConsoleGameRpg
 
         private static void DrawMainMenu(GUI graphicInterface)
         {
-            //Task.Run(() =>
-            //{
-            //    GameMusic.PlayTrack1();
-            //});
 
             Console.BackgroundColor = ConsoleColor.DarkRed;
             Console.ForegroundColor = ConsoleColor.White;
@@ -178,13 +186,7 @@ namespace ConsoleGameRpg
                                         GUI.PlaceInCenter(_resManager.GetString("MainMenu_Credits", _cultureInfo)),
                                         45, 0, ConsoleColor.DarkRed, ConsoleColor.Yellow);
 
-            DrawSelectedOption(graphicInterface);
-            //graphicInterface.WriteText(_startGameStr/*_resManager.GetString("MainMenu_StartGame", _cultureInfo).Replace('∙', '►').Replace('·', '◄')*/, GUI.PlaceInCenter(_startGameStr),
-            //                            26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
-            //graphicInterface.WriteText(_settingsStr, GUI.PlaceInCenter(_settingsStr),
-            //                            29, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
-            //graphicInterface.WriteText(_exitStr, GUI.PlaceInCenter(_exitStr),
-            //                            32, 0, ConsoleColor.Red, ConsoleColor.White);
+            DrawSelectedMainMenuOption(graphicInterface);
 
             graphicInterface.WriteText(new string('╦', 170), 0, 39, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 40, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
@@ -195,60 +197,56 @@ namespace ConsoleGameRpg
             graphicInterface.WriteText(_resManager.GetString("MainMenu_Tip2", _cultureInfo),
                                         21, 28, 1, ConsoleColor.DarkGreen, ConsoleColor.White);
 
-            ManageSelector(graphicInterface);
-
-            //graphicInterface.WriteText(_resManager.GetString("MainMenu_Exit", _cultureInfo).Replace('∙', '►').Replace('·', '◄'), GUI.PlaceInCenter(_resManager.GetString("MainMenu_Exit", _cultureInfo)),
-            //                            32, 0, ConsoleColor.Red, ConsoleColor.White);
-            //Console.ReadKey();
+            MainMenuSelector(graphicInterface);
         }       
 
-        private static void ManageSelector(GUI graphicInterface)
+        private static void MainMenuSelector(GUI graphicInterface)
         {
             while (true)
             {
-                if (_selectorMenu == 0)
+                if (_selectorMainMenu == 0)
                 {
                     _startGameStr = _startGameStr.Replace('∙', '►').Replace('·', '◄');
                     _settingsStr = _settingsStr.Replace('►', '∙').Replace('◄', '·');
                     _exitStr = _exitStr.Replace('►', '∙').Replace('◄', '·');
 
-                    DrawSelectedOption(graphicInterface);
+                    DrawSelectedMainMenuOption(graphicInterface);
                 }
-                else if (_selectorMenu == 1)
+                else if (_selectorMainMenu == 1)
                 {
                     _startGameStr = _startGameStr.Replace('►', '∙').Replace('◄', '·');
                     _settingsStr = _settingsStr.Replace('∙', '►').Replace('·', '◄');
                     _exitStr = _exitStr.Replace('►', '∙').Replace('◄', '·');
 
-                    DrawSelectedOption(graphicInterface);
+                    DrawSelectedMainMenuOption(graphicInterface);
                 }
-                else if (_selectorMenu == 2)
+                else if (_selectorMainMenu == 2)
                 {
                     _startGameStr = _startGameStr.Replace('►', '∙').Replace('◄', '·');
                     _settingsStr = _settingsStr.Replace('►', '∙').Replace('◄', '·');
                     _exitStr = _exitStr.Replace('∙', '►').Replace('·', '◄');
 
-                    DrawSelectedOption(graphicInterface);
+                    DrawSelectedMainMenuOption(graphicInterface);
                 }
-                else if (_selectorMenu > 2)
+                else if (_selectorMainMenu > 2)
                 {
-                    _selectorMenu = 0;
+                    _selectorMainMenu = 0;
 
                     _startGameStr = _startGameStr.Replace('∙', '►').Replace('·', '◄');
                     _settingsStr = _settingsStr.Replace('►', '∙').Replace('◄', '·');
                     _exitStr = _exitStr.Replace('►', '∙').Replace('◄', '·');
 
-                    DrawSelectedOption(graphicInterface);
+                    DrawSelectedMainMenuOption(graphicInterface);
                 }
-                else if (_selectorMenu < 0)
+                else if (_selectorMainMenu < 0)
                 {
-                    _selectorMenu = 2;
+                    _selectorMainMenu = 2;
 
                     _startGameStr = _startGameStr.Replace('►', '∙').Replace('◄', '·');
                     _settingsStr = _settingsStr.Replace('►', '∙').Replace('◄', '·');
                     _exitStr = _exitStr.Replace('∙', '►').Replace('·', '◄');
 
-                    DrawSelectedOption(graphicInterface);
+                    DrawSelectedMainMenuOption(graphicInterface);
                 }
 
                 ConsoleKey consoleKey = Console.ReadKey(true).Key;
@@ -256,32 +254,32 @@ namespace ConsoleGameRpg
                 {
                     case ConsoleKey.W:
                         {
-                            _selectorMenu -= 1;
-                            GameMusic.PlayButtonSelected();
+                            _selectorMainMenu -= 1;
+                            GameMusic.PlayButtonSelected(_isMusicEnabled);
                             break;
                         }
                     case ConsoleKey.S:
                         {
-                            _selectorMenu += 1;
-                            GameMusic.PlayButtonSelected();
+                            _selectorMainMenu += 1;
+                            GameMusic.PlayButtonSelected(_isMusicEnabled);
                             break;
                         }
                     case ConsoleKey.Enter:
                         {
-                            if (_selectorMenu == 0)
+                            if (_selectorMainMenu == 0)
                             {
-                                GameMusic.PlayButtonPressed();
+                                GameMusic.PlayButtonPressed(_isMusicEnabled);
                                 continue;
                             }
-                            else if (_selectorMenu == 1)
+                            else if (_selectorMainMenu == 1)
                             {
-                                GameMusic.PlayButtonPressed();
+                                GameMusic.PlayButtonPressed(_isMusicEnabled);
                                 DrawSettingsMenu(graphicInterface);
                             }
-                            else if (_selectorMenu == 2)
+                            else if (_selectorMainMenu == 2)
                             {
-                                GameMusic.PlayButtonPressed();
-                                DrawExitMenu(graphicInterface);                             
+                                GameMusic.PlayButtonPressed(_isMusicEnabled);
+                                DrawExitMenu(graphicInterface);
                             }
                             break;
                         }
@@ -320,33 +318,30 @@ namespace ConsoleGameRpg
             {
                 case ConsoleKey.Escape:
                     {
-                        GameMusic.PlayButtonPressed();
+                        GameMusic.PlayButtonPressed(_isMusicEnabled);
                         DrawMainMenu(_mainMenu);
                         break;
                     }
                 case ConsoleKey.Enter:
                     {
-                        GameMusic.PlayButtonPressed();
+                        GameMusic.PlayButtonPressed(_isMusicEnabled);
                         Console.SetCursorPosition(0, 43);
                         Environment.Exit(0);
                         break;
                     }
                 default:
-                    GameMusic.PlayButtonPressed();
+                    GameMusic.PlayButtonPressed(_isMusicEnabled);
                     DrawExitMenu(graphicInterface); 
                     break;
             }
         }
 
-        private static void DrawSelectedOption(GUI graphicInterface)
+        private static void DrawSelectedMainMenuOption(GUI graphicInterface)
         {
-            Console.SetCursorPosition(26, 0);
             graphicInterface.WriteText(_startGameStr, GUI.PlaceInCenter(_startGameStr),
                                        26, 0, ConsoleColor.DarkMagenta, ConsoleColor.White);
-            Console.SetCursorPosition(29, 0);
             graphicInterface.WriteText(_settingsStr, GUI.PlaceInCenter(_settingsStr),
                                         29, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
-            Console.SetCursorPosition(32, 0);
             graphicInterface.WriteText(_exitStr, GUI.PlaceInCenter(_exitStr),
                                         32, 0, ConsoleColor.Red, ConsoleColor.White);
         }
@@ -363,17 +358,114 @@ namespace ConsoleGameRpg
             graphicInterface.WriteText(new string('╦', 170), 0, 17, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
 
-            graphicInterface.WriteText("╬" + new string('=', 30) + "╬", 69, 23, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
-            graphicInterface.WriteText("╬" + new string('=', 30) + "╬", 69, 35, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+            graphicInterface.WriteText("╬" + new string('=', 30) + "╬", 55, 23, 0, ConsoleColor.Magenta, ConsoleColor.Yellow);
+            graphicInterface.WriteText("╬" + new string('=', 30) + "╬", 55, 35, 0, ConsoleColor.Magenta, ConsoleColor.Yellow);
             for (int i = 0; i < 11; i++)
             {
-                graphicInterface.WriteText(new string('I', 1), 69, 24 + i, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+                graphicInterface.WriteText(new string('I', 1), 55, 24 + i, 0, ConsoleColor.Magenta, ConsoleColor.Yellow);
             }
             for (int i = 0; i < 11; i++)
             {
-                graphicInterface.WriteText(new string('I', 1), 100, 24 + i, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+                graphicInterface.WriteText(new string('I', 1), 86, 24 + i, 0, ConsoleColor.Magenta, ConsoleColor.Yellow);
             }
 
+            graphicInterface.WriteText("╬" + new string('=', 30) + "╬", 86, 23, 0, ConsoleColor.Magenta, ConsoleColor.Yellow);
+            graphicInterface.WriteText("╬" + new string('=', 30) + "╬", 86, 35, 0, ConsoleColor.Magenta, ConsoleColor.Yellow);
+            for (int i = 0; i < 11; i++)
+            {
+                graphicInterface.WriteText(new string('I', 1), 117, 24 + i, 0, ConsoleColor.Magenta, ConsoleColor.Yellow);
+            }
+            SettingsMenuSelector(graphicInterface);
+        }
+
+        private static void DrawSelectedSettingsMenuOption(GUI graphicInterface)
+        {
+            graphicInterface.WriteText(_resManager.GetString("SettingsMenu_UILang", _cultureInfo), GUI.PlaceInCenter(_resManager.GetString("SettingsMenu_UILang", _cultureInfo)) - 14,
+                                       26, 0, ConsoleColor.DarkRed, ConsoleColor.White);
+            graphicInterface.WriteText(_langRusStr, GUI.PlaceInCenter(_langRusStr) - 14,
+                                        29, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
+            graphicInterface.WriteText(_langEngStr, GUI.PlaceInCenter(_langEngStr) - 14,
+                                        32, 0, ConsoleColor.DarkCyan, ConsoleColor.White);
+        }
+
+        private static void SettingsMenuSelector(GUI graphicInterface)
+        {
+            while (true)
+            {
+                if (_selectorSettingsMenu == 0)
+                {
+                    _langRusStr = _langRusStr.Replace('∙', '►').Replace('·', '◄');                
+                    _langEngStr = _langEngStr.Replace('►', '∙').Replace('◄', '·');
+
+                    DrawSelectedSettingsMenuOption(graphicInterface);
+                }
+                else if (_selectorSettingsMenu == 1)
+                {
+                    _langRusStr = _langRusStr.Replace('►', '∙').Replace('◄', '·');
+                    _langEngStr = _langEngStr.Replace('∙', '►').Replace('·', '◄');
+
+                    DrawSelectedSettingsMenuOption(graphicInterface);
+                }                
+                else if (_selectorSettingsMenu > 1)
+                {
+                    _selectorSettingsMenu = 0;
+
+                    _langRusStr = _langRusStr.Replace('∙', '►').Replace('·', '◄');
+                    _langEngStr = _langEngStr.Replace('►', '∙').Replace('◄', '·');
+
+                    DrawSelectedSettingsMenuOption(graphicInterface);
+                }
+                else if (_selectorSettingsMenu < 0)
+                {
+                    _selectorSettingsMenu = 1;
+
+                    _langRusStr = _langRusStr.Replace('►', '∙').Replace('◄', '·');
+                    _langEngStr = _langEngStr.Replace('∙', '►').Replace('·', '◄');
+
+                    DrawSelectedSettingsMenuOption(graphicInterface);
+                }
+
+                ConsoleKey consoleKey = Console.ReadKey(true).Key;
+                switch (consoleKey)
+                {
+                    case ConsoleKey.W:
+                        {
+                            _selectorSettingsMenu -= 1;
+                            GameMusic.PlayButtonSelected(_isMusicEnabled);
+                            break;
+                        }
+                    case ConsoleKey.S:
+                        {
+                            _selectorSettingsMenu += 1;
+                            GameMusic.PlayButtonSelected(_isMusicEnabled);
+                            break;
+                        }
+                    case ConsoleKey.Enter:
+                        {
+                            if (_selectorSettingsMenu == 0)
+                            {
+                                GameMusic.PlayButtonPressed(_isMusicEnabled);
+                                _cultureInfo = CultureInfo.CreateSpecificCulture("ru");
+                                InitializeLocalization();
+                                DrawSettingsMenu(graphicInterface);
+                            }
+                            else if (_selectorSettingsMenu == 1)
+                            {
+                                GameMusic.PlayButtonPressed(_isMusicEnabled);
+                                _cultureInfo = CultureInfo.CreateSpecificCulture("en");
+                                InitializeLocalization();
+                                DrawSettingsMenu(graphicInterface);
+                            }
+                            break;
+                        }
+                    case ConsoleKey.Escape:
+                        {
+                            GameMusic.PlayButtonPressed(_isMusicEnabled);
+                            DrawMainMenu(_mainMenu);
+                        }
+                        break;
+                }
+            }
         }
 
         private static void DrawLevel(Level level)
