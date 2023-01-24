@@ -141,6 +141,12 @@
   <data name="MainMenu_Tip2" xml:space="preserve">
     <value>Чтобы выбрать нажмите Enter</value>
   </data>
+  <data name="SettingsMenu_Sounds_Off" xml:space="preserve">
+    <value>Звуки: отключены</value>
+  </data>
+  <data name="SettingsMenu_Sounds_On" xml:space="preserve">
+    <value>Звуки: включены</value>
+  </data>
   <data name="SettingsMenu_UILang" xml:space="preserve">
     <value>Язык интерфейса</value>
   </data>

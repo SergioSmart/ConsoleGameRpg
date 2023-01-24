@@ -133,25 +133,16 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Sounds.
+        ///   Ищет локализованную строку, похожую на Sounds: disabled.
         /// </summary>
-        internal static string SettingsMenu_Sounds {
+        internal static string SettingsMenu_Music_Off {
             get {
-                return ResourceManager.GetString("SettingsMenu_Sounds", resourceCulture);
+                return ResourceManager.GetString("SettingsMenu_Music_Off", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Disabled.
-        /// </summary>
-        internal static string SettingsMenu_Sounds_Off {
-            get {
-                return ResourceManager.GetString("SettingsMenu_Sounds_Off", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Enabled.
+        ///   Ищет локализованную строку, похожую на Sounds: enabled.
         /// </summary>
         internal static string SettingsMenu_Sounds_On {
             get {
@@ -160,7 +151,7 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Language interface.
+        ///   Ищет локализованную строку, похожую на  = Language interface = .
         /// </summary>
         internal static string SettingsMenu_UILang {
             get {
