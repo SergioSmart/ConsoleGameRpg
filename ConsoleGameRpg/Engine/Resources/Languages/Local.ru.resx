@@ -141,6 +141,9 @@
   <data name="MainMenu_Tip2" xml:space="preserve">
     <value>Чтобы выбрать нажмите Enter</value>
   </data>
+  <data name="MainMenu_Tip3" xml:space="preserve">
+    <value>Чтобы выйти нажмите Escape</value>
+  </data>
   <data name="SettingsMenu_Sounds_Off" xml:space="preserve">
     <value>Звуки: отключены</value>
   </data>

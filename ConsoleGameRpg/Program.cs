@@ -9,13 +9,12 @@ namespace ConsoleGameRpg
 {
     public class Program
     {
-        private static ResourceManager _resManagerLocal = new ResourceManager("ConsoleGameRpg.Engine.Resources.Languages.Local", typeof(Program).Assembly);
-        //private static CultureInfo _cultureInfo = CultureInfo.CreateSpecificCulture("en");
+        private static ResourceManager _resManagerPaths = new ResourceManager("ConsoleGameRpg.Engine.Resources.Path.Paths", typeof(Program).Assembly);
+        private static ResourceManager _resManagerLocal = new ResourceManager("ConsoleGameRpg.Engine.Resources.Languages.Local", typeof(Program).Assembly);      
         private static CultureInfo _cultureInfo = CultureInfo.CurrentCulture;
 
 
-        private static GUI _intro = new GUI();
-        private static GUI _mainMenu = new GUI();
+        private static GUI _graphicInterface = new GUI();
 
         private static Level level1 = new Level("test2d.txt", 62, 6, ConsoleColor.Black, ConsoleColor.White);
         
@@ -28,7 +27,8 @@ namespace ConsoleGameRpg
         private static string _settingsStr;
         private static string _exitStr;
 
-        private static string _pathSettingsHeader = "resources/graphicElements/settingsMenu/settingsHeaderEng.txt";
+        private static string _pathSettingsHeader;
+        private static string _pathLevelsHeader;
 
         private static string _langRusStr;
         private static string _langEngStr;
@@ -40,10 +40,10 @@ namespace ConsoleGameRpg
             InitializeConsole(Level.ScreenWidth, Level.ScreenHeight, false);
             InitializeLocalization();
 
-            DrawIntro(_intro);
+            DrawIntro(_graphicInterface);
             Console.ReadKey();
         
-            DrawMainMenu(_mainMenu);
+            DrawMainMenu(_graphicInterface);
 
             //DrawLevel(level1);
             /*
@@ -157,34 +157,39 @@ namespace ConsoleGameRpg
 
             if(_cultureInfo.TwoLetterISOLanguageName == "ru")
             {
-                _pathSettingsHeader = "resources/graphicElements/settingsMenu/settingsHeaderRus.txt";
+                _pathSettingsHeader = _resManagerPaths.GetString("SettingsMenuHeaderRus");
+                _pathLevelsHeader = _resManagerPaths.GetString("LevelsMenuHeaderRus");
             }
             else if(_cultureInfo.TwoLetterISOLanguageName == "en")
             {
-                _pathSettingsHeader = "resources/graphicElements/settingsMenu/settingsHeaderEng.txt";
+                _pathSettingsHeader = _resManagerPaths.GetString("SettingsMenuHeaderEng");
+                _pathLevelsHeader = _resManagerPaths.GetString("LevelsMenuHeaderEng");
+            }
+            else
+            {
+                _pathSettingsHeader = _resManagerPaths.GetString("SettingsMenuHeaderEng");
+                _pathLevelsHeader = _resManagerPaths.GetString("LevelsMenuHeaderEng");
             }
         }
 
         private static void DrawIntro(GUI graphicInterface)
         {
-
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Clear();
 
-            graphicInterface.WriteElement("resources/graphicElements/intro/intro.txt", 36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
+            graphicInterface.WriteElement(_resManagerPaths.GetString("Intro"), 36, 6, 5, ConsoleColor.White, ConsoleColor.Blue);
             graphicInterface.WriteText(_resManagerLocal.GetString("Intro_PressAnyKey", _cultureInfo), GUI.PlaceInCenter(_resManagerLocal.GetString("Intro_PressAnyKey", _cultureInfo)), 34, 5, ConsoleColor.Blue, ConsoleColor.White);
         }
 
         private static void DrawMainMenu(GUI graphicInterface)
         {
-
             Console.BackgroundColor = ConsoleColor.DarkRed;
             Console.ForegroundColor = ConsoleColor.White;
-
             Console.Clear();
+
             graphicInterface.WriteText(new string('▄', 170), 0, 0, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
-            graphicInterface.WriteElement("resources/graphicElements/mainMenu/mainMenuHeader.txt", 0, 1, 0, ConsoleColor.Cyan, ConsoleColor.DarkMagenta);
+            graphicInterface.WriteElement(_resManagerPaths.GetString("MainMenuHeader"), 0, 1, 0, ConsoleColor.Cyan, ConsoleColor.DarkMagenta);
             graphicInterface.WriteText(new string('▀', 170), 0, 17, 0, ConsoleColor.Yellow, ConsoleColor.Magenta);
             graphicInterface.WriteText(new string('╦', 170), 0, 18, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 19, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
@@ -207,12 +212,14 @@ namespace ConsoleGameRpg
 
             graphicInterface.WriteText(new string('╦', 170), 0, 39, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
             graphicInterface.WriteText(new string('╩', 170), 0, 40, 0, ConsoleColor.DarkYellow, ConsoleColor.White);
-            graphicInterface.WriteElement("resources/graphicElements/mainMenu/mainMenuTip.txt",
+            graphicInterface.WriteElement(_resManagerPaths.GetString("MainMenuTip"),
                                           6, 24, 0, ConsoleColor.DarkGreen, ConsoleColor.White);
             graphicInterface.WriteText(_resManagerLocal.GetString("MainMenu_Tip1", _cultureInfo),
                                        21, 24, 1, ConsoleColor.DarkGreen, ConsoleColor.White, 32);
             graphicInterface.WriteText(_resManagerLocal.GetString("MainMenu_Tip2", _cultureInfo),
                                         21, 28, 1, ConsoleColor.DarkGreen, ConsoleColor.White);
+            graphicInterface.WriteText(_resManagerLocal.GetString("MainMenu_Tip3", _cultureInfo),
+                                        21, 31, 1, ConsoleColor.DarkGreen, ConsoleColor.White);
 
             MainMenuSelector(graphicInterface);
         }       
@@ -300,6 +307,12 @@ namespace ConsoleGameRpg
                             }
                             break;
                         }
+                    case ConsoleKey.Escape:
+                        {
+                            GameMusic.PlayButtonPressed(_isSoundsEnabled);
+                            DrawExitMenu(graphicInterface);
+                            break;
+                        }
                 }
             }
         }
@@ -336,7 +349,7 @@ namespace ConsoleGameRpg
                 case ConsoleKey.Escape:
                     {
                         GameMusic.PlayButtonPressed(_isSoundsEnabled);
-                        DrawMainMenu(_mainMenu);
+                        DrawMainMenu(_graphicInterface);
                         break;
                     }
                 case ConsoleKey.Enter:
@@ -387,6 +400,15 @@ namespace ConsoleGameRpg
             }
             graphicInterface.WriteText("╬" + new string('=', 30) + "╬", 69, 40, 0, ConsoleColor.Magenta, ConsoleColor.Yellow);
 
+            graphicInterface.WriteElement(_resManagerPaths.GetString("MainMenuTip"),
+                                          6, 24, 0, ConsoleColor.DarkBlue, ConsoleColor.White);
+            graphicInterface.WriteText(_resManagerLocal.GetString("MainMenu_Tip1", _cultureInfo),
+                                       21, 24, 0, ConsoleColor.DarkBlue, ConsoleColor.White, 32);
+            graphicInterface.WriteText(_resManagerLocal.GetString("MainMenu_Tip2", _cultureInfo),
+                                        21, 28, 0, ConsoleColor.DarkBlue, ConsoleColor.White);
+            graphicInterface.WriteText(_resManagerLocal.GetString("MainMenu_Tip3", _cultureInfo),
+                                        21, 31, 0, ConsoleColor.DarkBlue, ConsoleColor.White);
+
             SettingsMenuSelector(graphicInterface);
         }
 
@@ -408,7 +430,7 @@ namespace ConsoleGameRpg
             {
                 if (_selectorSettingsMenu == 0)
                 {
-                    _langRusStr = _langRusStr.Replace('∙', '►').Replace('·', '◄');                
+                    _langRusStr = _langRusStr.Replace('∙', '►').Replace('·', '◄');
                     _langEngStr = _langEngStr.Replace('►', '∙').Replace('◄', '·');
                     _isSoundsEnabledStr = _isSoundsEnabledStr.Replace('►', '∙').Replace('◄', '·');
 
@@ -445,7 +467,7 @@ namespace ConsoleGameRpg
                     _selectorSettingsMenu = 2;
 
                     _langRusStr = _langRusStr.Replace('►', '∙').Replace('◄', '·');
-                    _langEngStr = _langEngStr.Replace('∙', '►').Replace('·', '◄');
+                    _langEngStr = _langEngStr.Replace('►', '∙').Replace('◄', '·');
                     _isSoundsEnabledStr = _isSoundsEnabledStr.Replace('∙', '►').Replace('·', '◄');
 
                     DrawSelectedSettingsMenuOption(graphicInterface);
@@ -498,7 +520,7 @@ namespace ConsoleGameRpg
                     case ConsoleKey.Escape:
                         {
                             GameMusic.PlayButtonPressed(_isSoundsEnabled);
-                            DrawMainMenu(_mainMenu);
+                            DrawMainMenu(_graphicInterface);
                         }
                         break;
                 }

@@ -24,3 +24,4 @@ C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\en\Cons
 C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\bin\Debug\net6.0\Engine\Resources\Languages\Local.resx
 C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\bin\Debug\net6.0\Engine\Resources\Languages\Local.en.resx
 C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\bin\Debug\net6.0\Engine\Resources\Languages\Local.ru.resx
+C:\Users\MSI\source\repos\ConsoleGameRpg\ConsoleGameRpg\obj\Debug\net6.0\ConsoleGameRpg.Engine.Resources.Path.Paths.resources

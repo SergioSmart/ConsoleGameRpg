@@ -117,47 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Intro_PressAnyKey" xml:space="preserve">
-    <value>Press any key to continue . . .</value>
+  <data name="Intro" xml:space="preserve">
+    <value>resources/graphicElements/intro/intro.txt</value>
   </data>
-  <data name="MainMenu_Credits" xml:space="preserve">
-    <value> This console application created as a pet-project by Sergey V. For informational purposes only. </value>
+  <data name="LevelsMenuHeaderEng" xml:space="preserve">
+    <value>resources/graphicElements/levelsMenu/levelsMenuHeaderEng.txt</value>
   </data>
-  <data name="MainMenu_Exit" xml:space="preserve">
-    <value>Exit</value>
+  <data name="LevelsMenuHeaderRus" xml:space="preserve">
+    <value>resources/graphicElements/levelsMenu/levelsMenuHeaderRus.txt</value>
   </data>
-  <data name="MainMenu_ExitQuestion" xml:space="preserve">
-    <value>Do you want to exit? Enter - yes | Esc - no</value>
+  <data name="MainMenuHeader" xml:space="preserve">
+    <value>resources/graphicElements/mainMenu/mainMenuHeader.txt</value>
   </data>
-  <data name="MainMenu_Settings" xml:space="preserve">
-    <value>Settings</value>
+  <data name="MainMenuTip" xml:space="preserve">
+    <value>resources/graphicElements/mainMenu/mainMenuTip.txt</value>
   </data>
-  <data name="MainMenu_StartGame" xml:space="preserve">
-    <value>Start game</value>
+  <data name="SettingsMenuHeaderEng" xml:space="preserve">
+    <value>resources/graphicElements/settingsMenu/settingsHeaderEng.txt</value>
   </data>
-  <data name="MainMenu_Tip1" xml:space="preserve">
-    <value>Hint: in order to control menu  use buttons W↑ and S↓</value>
-    <comment>To use '\n' print ALT+255</comment>
-  </data>
-  <data name="MainMenu_Tip2" xml:space="preserve">
-    <value>To choose press Enter</value>
-  </data>
-  <data name="MainMenu_Tip3" xml:space="preserve">
-    <value>To go back press Escape</value>
-  </data>
-  <data name="SettingsMenu_Sounds_Off" xml:space="preserve">
-    <value>Sounds: disabled</value>
-  </data>
-  <data name="SettingsMenu_Sounds_On" xml:space="preserve">
-    <value>Sounds: enabled</value>
-  </data>
-  <data name="SettingsMenu_UILang" xml:space="preserve">
-    <value>Language interface</value>
-  </data>
-  <data name="SettingsMenu_UILang_En" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="SettingsMenu_UILang_Ru" xml:space="preserve">
-    <value>Russian</value>
+  <data name="SettingsMenuHeaderRus" xml:space="preserve">
+    <value>resources/graphicElements/settingsMenu/settingsHeaderRus.txt</value>
   </data>
 </root>

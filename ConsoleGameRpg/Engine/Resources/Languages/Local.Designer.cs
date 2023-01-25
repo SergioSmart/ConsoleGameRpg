@@ -133,6 +133,15 @@ namespace ConsoleGameRpg.Engine.Resources.Languages {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на To go back press Escape.
+        /// </summary>
+        internal static string MainMenu_Tip3 {
+            get {
+                return ResourceManager.GetString("MainMenu_Tip3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Sounds: disabled.
         /// </summary>
         internal static string SettingsMenu_Music_Off {

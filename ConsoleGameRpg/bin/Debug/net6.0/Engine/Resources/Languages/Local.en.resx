@@ -142,6 +142,9 @@
   <data name="MainMenu_Tip2" xml:space="preserve">
     <value>To choose press Enter</value>
   </data>
+  <data name="MainMenu_Tip3" xml:space="preserve">
+    <value>To go back press Escape</value>
+  </data>
   <data name="SettingsMenu_Sounds_Off" xml:space="preserve">
     <value>Sounds: disabled</value>
   </data>
